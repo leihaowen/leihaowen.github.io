@@ -16,7 +16,7 @@
 <meta property="og:description" content="比较排序大多数排序算法都属于比较排序，在比较排序中，待排序的对象可以是任意数据类型，我们只需要知道如何比较两个对象大小。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-20T03:51:14.000Z">
-<meta property="article:modified_time" content="2020-03-21T08:48:05.933Z">
+<meta property="article:modified_time" content="2020-03-25T15:28:31.444Z">
 <meta property="article:author" content="雷浩文">
 <meta property="article:tag" content="排序算法">
 <meta name="twitter:card" content="summary">
@@ -186,6 +186,17 @@
 <ol start="4">
 <li>归并排序</li>
 </ol>
+<p>归并排序使用了分治算法的思想，每次将序列分为两半并分别处理，最终合并为一个序列。</p>
+<center >递归版</center>
+
+<blockquote>
+<ol>
+<li>如果n &lt;= 1，则不必排序，程序结束</li>
+<li>递归对a1,a2,…,a[n/2]排序</li>
+<li>递归对a[(n/2) +1]，a[(n/2) +2]，….，a[n]排序</li>
+<li>合并两个有序数列，得到最终的排序结果</li>
+</ol>
+</blockquote>
 
       
 
@@ -393,7 +404,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">软件架构</a>
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -401,7 +412,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">软件架构</a>
               </li>
             
             <div class="clearfix"></div>
