@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>算法笔记-排序 | 雷浩文的博客</title>
+  <title>线程池的四种拒绝策略 | 雷浩文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="比较排序大多数排序算法都属于比较排序，在比较排序中，待排序的对象可以是任意数据类型，我们只需要知道如何比较两个对象大小。 比较排序需要满足以下两个性质  传递性：如果 a &lt;&#x3D; b, b &lt;&#x3D; c, 则一定有a &lt;&#x3D; c。 全序性：对任意a和b，或者a &lt;&#x3D; b，或者a &gt;&#x3D; b。">
+  <meta name="description" content="线程池的四种拒绝策略当线程池的任务缓存队列已满并且线程池中的线程数目达到 maximumPoolSize 时，如果还有任务到来就会采取任务拒绝策略，通常有以下四种策略： 1234ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。ThreadPoolExecutor.DiscardPolicy：丢弃任务，但是不抛出异">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法笔记-排序">
-<meta property="og:url" content="http://yoursite.com/2020/03/20/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:title" content="线程池的四种拒绝策略">
+<meta property="og:url" content="http://yoursite.com/2020/03/29/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5/index.html">
 <meta property="og:site_name" content="雷浩文的博客">
-<meta property="og:description" content="比较排序大多数排序算法都属于比较排序，在比较排序中，待排序的对象可以是任意数据类型，我们只需要知道如何比较两个对象大小。 比较排序需要满足以下两个性质  传递性：如果 a &lt;&#x3D; b, b &lt;&#x3D; c, 则一定有a &lt;&#x3D; c。 全序性：对任意a和b，或者a &lt;&#x3D; b，或者a &gt;&#x3D; b。">
+<meta property="og:description" content="线程池的四种拒绝策略当线程池的任务缓存队列已满并且线程池中的线程数目达到 maximumPoolSize 时，如果还有任务到来就会采取任务拒绝策略，通常有以下四种策略： 1234ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。ThreadPoolExecutor.DiscardPolicy：丢弃任务，但是不抛出异">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-20T03:51:14.000Z">
-<meta property="article:modified_time" content="2020-03-29T14:16:31.783Z">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/16b6b0441048db12.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/16b6b044105a12ba.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/16b6b044109e4d2f.png">
+<meta property="article:published_time" content="2020-03-29T14:27:34.000Z">
+<meta property="article:modified_time" content="2020-03-29T15:10:10.212Z">
 <meta property="article:author" content="雷浩文">
-<meta property="article:tag" content="排序算法">
+<meta property="article:tag" content="线程池">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/16b6b0441048db12.png">
   
     <link rel="alternative" href="/atom.xml" title="雷浩文的博客" type="application/atom+xml">
   
@@ -139,79 +143,76 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-算法笔记-排序" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-线程池的四种拒绝策略" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      算法笔记-排序
+      线程池的四种拒绝策略
     </h1>
   
 
         
-        <a href="/2020/03/20/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-03-20T03:51:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
+        <a href="/2020/03/29/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5/" class="archive-article-date">
+  	<time datetime="2020-03-29T14:27:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="比较排序"><a href="#比较排序" class="headerlink" title="比较排序"></a>比较排序</h3><p>大多数排序算法都属于比较排序，在比较排序中，待排序的对象可以是任意数据类型，我们只需要知道如何比较两个对象大小。</p>
-<p>比较排序需要满足以下两个性质</p>
-<ul>
-<li>传递性：如果 a &lt;= b, b &lt;= c, 则一定有a &lt;= c。</li>
-<li>全序性：对任意a和b，或者a &lt;= b，或者a &gt;= b。</li>
-</ul>
+        <h3 id="线程池的四种拒绝策略"><a href="#线程池的四种拒绝策略" class="headerlink" title="线程池的四种拒绝策略"></a>线程池的四种拒绝策略</h3><p>当线程池的任务缓存队列已满并且线程池中的线程数目达到 maximumPoolSize 时，如果还有任务到来就会采取任务拒绝策略，通常有以下四种策略：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。</span><br><span class="line">ThreadPoolExecutor.DiscardPolicy：丢弃任务，但是不抛出异常。</span><br><span class="line">ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新提交被拒绝的任务</span><br><span class="line">ThreadPoolExecutor.CallerRunsPolicy：由调用线程（提交任务的线程）处理该任务</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
-<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for i &#x3D; 1, 2, 3, ...., n-1 do</span><br><span class="line">	for j &#x3D; 1, 2, 3, ..., n-i do</span><br><span class="line">		if a[j] &gt; a[j+1] do</span><br><span class="line">			交换a[j]和a[j+1]</span><br><span class="line">		end if</span><br><span class="line">	end for</span><br><span class="line">end for</span><br></pre></td></tr></table></figure>
-
-<p>算法时间复杂度O( n^2 )<br>优势：代码简单</p>
-<h4 id="梳排序"><a href="#梳排序" class="headerlink" title="梳排序"></a>梳排序</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">combSort</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> a[] = &#123;<span class="number">6</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>&#125;; </span><br><span class="line">		p(a);</span><br><span class="line">		<span class="keyword">int</span> n = <span class="number">6</span>;</span><br><span class="line">		<span class="keyword">double</span> s =  <span class="number">1.30</span>;</span><br><span class="line">		<span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">		<span class="keyword">double</span> j = n;</span><br><span class="line">		<span class="keyword">while</span>(j &gt; <span class="number">1</span> || flag == <span class="keyword">true</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">int</span> b = max((<span class="keyword">int</span>)(j/s),<span class="number">1</span>);</span><br><span class="line">			flag = <span class="keyword">false</span>;</span><br><span class="line">			<span class="keyword">while</span>(i + b &lt;= n - <span class="number">1</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span>(a[i] &gt; a[b+i]) &#123;</span><br><span class="line">					<span class="keyword">int</span> x = a[i];</span><br><span class="line">					a[i] = a[b+i];</span><br><span class="line">					a[b+i] = x;</span><br><span class="line">					flag = <span class="keyword">true</span>;</span><br><span class="line">					System.out.println(<span class="string">"X"</span>);</span><br><span class="line">					p(a);</span><br><span class="line">				&#125;</span><br><span class="line">				System.out.print(<span class="string">"i: "</span> + i);</span><br><span class="line">				System.out.println(<span class="string">"  j: "</span> + b);</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			j = b;</span><br><span class="line">			System.out.println(b);</span><br><span class="line">			p(a);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		p(a);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(i &gt; j)</span><br><span class="line">			<span class="keyword">return</span> i;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">return</span> j;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">p</span><span class="params">(<span class="keyword">int</span>[] a)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> look : a) &#123;</span><br><span class="line">			System.out.print(look);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个算法的核心思想是给待排序的数分组，当j=1时算法和冒泡排序是等价的，只不过在到达j=1之前，算法对待排序的数在相应分组内实现排序，然后通过不断减少分组实现排好序。</p>
-<p>时间复杂度上界是O(nlog<sub>1.3</sub>n)</p>
-<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><p>//todo</p>
-<h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><p>归并排序使用了分治算法的思想，每次将序列分为两半并分别处理，最终合并为一个序列。</p>
-<center >递归版</center>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 如果n &lt;&#x3D; 1，则不必排序，程序结束</span><br><span class="line"></span><br><span class="line">2. 递归对a1,a2,...,a[n&#x2F;2]排序</span><br><span class="line"></span><br><span class="line">3. 递归对a[(n&#x2F;2) +1]，a[(n&#x2F;2) +2]，....，a[n]排序</span><br><span class="line"></span><br><span class="line">4. 合并两个有序数列，得到最终的排序结果</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://github.com/leihaowen/Algorithm-Note/blob/master/QuickSort.java" target="_blank" rel="noopener">这里是代码实现</a></p>
-<center>非递归</center>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">j &#x3D; 1;</span><br><span class="line">while j &lt; n do</span><br><span class="line">	i &#x3D; 1;</span><br><span class="line">	while i + j - 1 &lt; n do</span><br><span class="line">		合并两个有序列a[i],a[i+1],...a[i+j-1]和a[i+j],a[i+j+1],...,a&#123;i+2j-1,n&#125;min</span><br><span class="line">		i &#x3D; i+2j</span><br><span class="line">	end while</span><br><span class="line">	j &#x3D; 2j;</span><br><span class="line">end while</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><p>在最坏的情况下是O(n^2)</p>
-<p>平均是O(nlogn)</p>
-<center>递归版</center>
-1. 选择一个阈值，将比它小的放入子序列X，比他大的放入子序列Y
-2. 若子序列X包含超过一个元素，则递归对X进行排序
-3. 若子序列Y包含超过一个元素，则递归对Y进行排序
-4. 连接子序列XY得到最终序列
-
-
-
-<center>非递归</center>
-1. 建一个集合S，将数组作为一个元素放进去
-2. 当集合不为空，则取出一个元素
-3. 选择一个阈值，将比它小的放入子序列X，比他大的放入子序列Y
-4. 若X里元素个数大于1，则放入集合S中
-5. 若X里元素个数大于1，则放入集合S中
-6. 重复第二步
-
-
-
-<h4 id="内省排序"><a href="#内省排序" class="headerlink" title="内省排序"></a>内省排序</h4><p>就是快排、插入排序和堆排序混合的排序方法。</p>
-<p>主体是快排，并使用递归方法实现，在以下两种方法实现：</p>
-<ol>
-<li>当递归排序到了一定层数时，改为堆排序，以避免层数太大太深导致影响效率。</li>
-<li>当待排序的子序列长度非常小时，采用插入排序。因为此时使用高级排序反而导致产生多余的开销。</li>
+<h4 id="详细来说"><a href="#详细来说" class="headerlink" title="详细来说"></a>详细来说</h4><ol>
+<li>CallerRunsPolicy：线程调用运行该任务的 execute 本身。此策略提供简单的反馈控制机制，能够减缓新任务的提交速度。<br>public void rejectedExecution(Runnable r, ThreadPoolExecutor e) { if (!e.isShutdown()) { r.run(); }}<br>这个策略显然不想放弃执行任务。但是由于池中已经没有任何资源了，那么就直接使用调用该execute的线程本身来执行。（开始我总不想丢弃任务的执行，但是对某些应用场景来讲，很有可能造成当前线程也被阻塞。如果所有线程都是不能执行的，很可能导致程序没法继续跑了。需要视业务情景而定吧。）</li>
+<li>AbortPolicy：处理程序遭到拒绝将抛出运行时 RejectedExecutionException<br>public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {throw new RejectedExecutionException();}<br>这种策略直接抛出异常，丢弃任务。（jdk默认策略，队列满并线程满时直接拒绝添加新任务，并抛出异常，所以说有时候放弃也是一种勇气，为了保证后续任务的正常进行，丢弃一些也是可以接收的，记得做好记录）</li>
+<li>DiscardPolicy：不能执行的任务将被删除<br>public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {}<br>这种策略和AbortPolicy几乎一样，也是丢弃任务，只不过他不抛出异常。</li>
+<li>DiscardOldestPolicy：如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）<br>public void rejectedExecution(Runnable r, ThreadPoolExecutor e) { if (!e.isShutdown()) {e.getQueue().poll();e.execute(r); }}<br>该策略就稍微复杂一些，在pool没有关闭的前提下首先丢掉缓存在队列中的最早的任务，然后重新尝试运行该任务。这个策略需要适当小心。</li>
 </ol>
-<h4 id="Timsort"><a href="#Timsort" class="headerlink" title="Timsort"></a>Timsort</h4><p>// todo</p>
+<h3 id="线程池的默认的拒绝策略"><a href="#线程池的默认的拒绝策略" class="headerlink" title="线程池的默认的拒绝策略"></a>线程池的默认的拒绝策略</h3><p>既然有四种拒绝策略可以选择，那么线程池的默认拒绝策略是什么呢？查看java.util.concurrent.ThreadPoolExecutor类的源码，我们可以看到：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The default rejected execution handler</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> RejectedExecutionHandler defaultHandler =</span><br><span class="line">    <span class="keyword">new</span> AbortPolicy();</span><br></pre></td></tr></table></figure>
+
+<p>线程池的默认拒绝策略为AbortPolicy，即丢弃任务并抛出RejectedExecutionException异常。我们可以通过代码来验证这一点，现有如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        BlockingQueue&lt;Runnable&gt; queue = <span class="keyword">new</span> ArrayBlockingQueue&lt;&gt;(<span class="number">100</span>);</span><br><span class="line">        ThreadFactory factory = r -&gt; <span class="keyword">new</span> Thread(r, <span class="string">"test-thread-pool"</span>);</span><br><span class="line">        ThreadPoolExecutor executor = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">5</span>, <span class="number">5</span>,</span><br><span class="line">                <span class="number">0L</span>, TimeUnit.SECONDS, queue, factory);</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            executor.submit(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    System.out.println(queue.size());</span><br><span class="line">                    Thread.sleep(<span class="number">10000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里是一个默认的线程池，没有设置拒绝策略，设置了最大线程队列是100。运行代码：</p>
+<p><img src="/assets/blogImg/16b6b0441048db12.png" alt=""></p>
+<p>结果是符合预期的，这也证明了线程池的默认拒绝策略是ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。</p>
+<h3 id="设置线程池拒绝策略"><a href="#设置线程池拒绝策略" class="headerlink" title="设置线程池拒绝策略"></a>设置线程池拒绝策略</h3><p>如果我们想要根据实际业务场景需要，设置其他的线程池拒绝策略，可以通过ThreadPoolExecutor重载的构造方法进行设置：</p>
+<p><img src="/assets/blogImg/16b6b044105a12ba.png" alt="img"></p>
+<p>现在的开发中，相信大家都有使用spring，其实我们也可以通过spring提供的org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor构建线程池。如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TaskExecutorConfig</span> <span class="keyword">implements</span> <span class="title">AsyncConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Set the ThreadPoolExecutor's core pool size.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CORE_POOL_SIZE = <span class="number">5</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Set the ThreadPoolExecutor's maximum pool size.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_POOL_SIZE = <span class="number">5</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Set the capacity for the ThreadPoolExecutor's BlockingQueue.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> QUEUE_CAPACITY = <span class="number">1000</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过重写getAsyncExecutor方法，制定默认的任务执行由该方法产生</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;</span></span><br><span class="line"><span class="comment">     * 配置类实现AsyncConfigurer接口并重写getAsyncExcutor方法，并返回一个ThreadPoolTaskExevutor</span></span><br><span class="line"><span class="comment">     * 这样我们就获得了一个基于线程池的TaskExecutor</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Executor <span class="title">getAsyncExecutor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ThreadPoolTaskExecutor taskExecutor = <span class="keyword">new</span> ThreadPoolTaskExecutor();</span><br><span class="line">        taskExecutor.setCorePoolSize(CORE_POOL_SIZE);</span><br><span class="line">        taskExecutor.setMaxPoolSize(MAX_POOL_SIZE);</span><br><span class="line">        taskExecutor.setQueueCapacity(QUEUE_CAPACITY);</span><br><span class="line">        taskExecutor.initialize();</span><br><span class="line">        taskExecutor.setRejectedExecutionHandler(<span class="keyword">new</span> ThreadPoolExecutor.AbortPolicy());</span><br><span class="line">        <span class="keyword">return</span> taskExecutor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过ThreadPoolTaskExecutor的setRejectedExecutionHandler设置拒绝策略即可。</p>
+<h3 id="拒绝策略场景分析"><a href="#拒绝策略场景分析" class="headerlink" title="拒绝策略场景分析"></a>拒绝策略场景分析</h3><h4 id="AbortPolicy"><a href="#AbortPolicy" class="headerlink" title="AbortPolicy"></a>AbortPolicy</h4><p>ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A handler for rejected tasks that throws a &#123;@code RejectedExecutionException&#125;.</span><br></pre></td></tr></table></figure>
+
+<p>这是线程池默认的拒绝策略，在任务不能再提交的时候，抛出异常，及时反馈程序运行状态。如果是比较关键的业务，推荐使用此拒绝策略，这样子在系统不能承载更大的并发量的时候，能够及时的通过异常发现。</p>
+<h4 id="DiscardPolicy"><a href="#DiscardPolicy" class="headerlink" title="DiscardPolicy"></a>DiscardPolicy</h4><p>ThreadPoolExecutor.DiscardPolicy：丢弃任务，但是不抛出异常。如果线程队列已满，则后续提交的任务都会被丢弃，且是静默丢弃。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A handler for rejected tasks that silently discards therejected task.</span><br></pre></td></tr></table></figure>
+
+<p>使用此策略，可能会使我们无法发现系统的异常状态。建议是一些无关紧要的业务采用此策略。例如:博客网站统计阅读量就可以采用的这种拒绝策略。</p>
+<h4 id="DiscardOldestPolicy"><a href="#DiscardOldestPolicy" class="headerlink" title="DiscardOldestPolicy"></a>DiscardOldestPolicy</h4><p>ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新提交被拒绝的任务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A handler for rejected tasks that discards the oldest unhandled request and then retries &#123;@code execute&#125;, unless the executor is shut down, in which case the task is discarded.</span><br></pre></td></tr></table></figure>
+
+<p>此拒绝策略，是一种喜新厌旧的拒绝策略。是否要采用此种拒绝策略，还得根据实际业务是否允许丢弃老任务来认真衡量。</p>
+<h4 id="CallerRunsPolicy"><a href="#CallerRunsPolicy" class="headerlink" title="CallerRunsPolicy"></a>CallerRunsPolicy</h4><p>ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A handler for rejected tasks that runs the rejected task directly in the calling thread of the &#123;@code execute&#125; method, unless the executor has been shut down, in which case the task is discarded.</span><br></pre></td></tr></table></figure>
+
+<p>如果任务被拒绝了，则由调用线程（提交任务的线程）直接执行此任务，我们可以通过代码来验证这一点：</p>
+<p>把之前的代码修改如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    BlockingQueue&lt;Runnable&gt; queue = <span class="keyword">new</span> ArrayBlockingQueue&lt;&gt;(<span class="number">10</span>);</span><br><span class="line">    ThreadFactory factory = r -&gt; <span class="keyword">new</span> Thread(r, <span class="string">"test-thread-pool"</span>);</span><br><span class="line">    ThreadPoolExecutor executor = <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">5</span>, <span class="number">5</span>,</span><br><span class="line">                                      <span class="number">0L</span>, TimeUnit.SECONDS, queue, factory, <span class="keyword">new</span> ThreadPoolExecutor.CallerRunsPolicy());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        executor.submit(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">":执行任务"</span>);</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>把队列最大值改为10，打印输出线程的名称。执行结果如下：</p>
+<p><img src="/assets/blogImg/16b6b044109e4d2f.png" alt=""></p>
+<p>通过结果可以看到，主线程main也执行了任务，这正说明了此拒绝策略由调用线程（提交任务的线程）直接执行被丢弃的任务的。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文介绍和演示了四种线程池拒绝策略，具体使用哪种策略，还得根据实际业务场景才能做出抉择。</p>
+<p><a href="https://juejin.im/post/5d08f6cf518825684b589422#heading-2" target="_blank" rel="noopener">参考链接</a></p>
 
       
 
@@ -225,7 +226,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">排序算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线程池</a>
         		</li>
       		
 		</ul>
@@ -281,7 +282,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/20/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E6%8E%92%E5%BA%8F/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/29/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,18 +296,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/27/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E9%9D%9E%E6%AF%94%E8%BE%83%E6%8E%92%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          算法笔记-非比较排序
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/18/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">软件架构设计课堂笔记</div>
+    <a href="/2020/03/29/SQL%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SQL笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
