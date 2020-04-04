@@ -6,19 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>操作系统-进程、线程通信 | 雷浩文的博客</title>
+  <title>纪念发生在2020年年初的新冠病毒事件 | 雷浩文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="进程间的通信进程间通信就是在不同进程之间传播或交换信息，那么不同进程之间存在着什么双方都可以访问的介质呢？进程的用户空间是互相独立的，一般而言是不能互相访问的，唯一的例外是共享内存区。但是，系统空间却是“公共场所”，所以内核显然可以提供这样的条件。除此以外，那就是双方都可以访问的外设了。在这个意义上，两个进程当然也可以通过磁盘上的普通文件交换信息，或者通过“注册表”或其它数据库中的某些表项和记录交">
+  <meta name="description" content="2020年新年伊始，一场流行性传染病席卷湖北，给全国人们带来了无尽的痛苦，无数医疗工作者奔赴前线，在这个沉痛的日子里，特向逝者表示哀悼，向英勇的医疗工作者表达崇高的敬意。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="操作系统-进程、线程通信">
-<meta property="og:url" content="http://yoursite.com/2020/04/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/index.html">
+<meta property="og:title" content="纪念发生在2020年年初的新冠病毒事件">
+<meta property="og:url" content="http://yoursite.com/2020/04/04/%E7%BA%AA%E5%BF%B5%E5%8F%91%E7%94%9F%E5%9C%A82020%E5%B9%B4%E5%88%9D%E7%9A%84%E6%96%B0%E5%86%A0%E7%97%85%E6%AF%92%E4%BA%8B%E4%BB%B6/index.html">
 <meta property="og:site_name" content="雷浩文的博客">
-<meta property="og:description" content="进程间的通信进程间通信就是在不同进程之间传播或交换信息，那么不同进程之间存在着什么双方都可以访问的介质呢？进程的用户空间是互相独立的，一般而言是不能互相访问的，唯一的例外是共享内存区。但是，系统空间却是“公共场所”，所以内核显然可以提供这样的条件。除此以外，那就是双方都可以访问的外设了。在这个意义上，两个进程当然也可以通过磁盘上的普通文件交换信息，或者通过“注册表”或其它数据库中的某些表项和记录交">
+<meta property="og:description" content="2020年新年伊始，一场流行性传染病席卷湖北，给全国人们带来了无尽的痛苦，无数医疗工作者奔赴前线，在这个沉痛的日子里，特向逝者表示哀悼，向英勇的医疗工作者表达崇高的敬意。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-03T15:46:46.000Z">
-<meta property="article:modified_time" content="2020-04-03T16:06:09.584Z">
+<meta property="article:published_time" content="2020-04-04T14:50:23.000Z">
+<meta property="article:modified_time" content="2020-04-04T14:55:41.851Z">
 <meta property="article:author" content="雷浩文">
-<meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="雷浩文的博客" type="application/atom+xml">
@@ -139,42 +138,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-操作系统-进程、线程通信" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-纪念发生在2020年初的新冠病毒事件" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      操作系统-进程、线程通信
+      纪念发生在2020年年初的新冠病毒事件
     </h1>
   
 
         
-        <a href="/2020/04/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/" class="archive-article-date">
-  	<time datetime="2020-04-03T15:46:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+        <a href="/2020/04/04/%E7%BA%AA%E5%BF%B5%E5%8F%91%E7%94%9F%E5%9C%A82020%E5%B9%B4%E5%88%9D%E7%9A%84%E6%96%B0%E5%86%A0%E7%97%85%E6%AF%92%E4%BA%8B%E4%BB%B6/" class="archive-article-date">
+  	<time datetime="2020-04-04T14:50:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="进程间的通信"><a href="#进程间的通信" class="headerlink" title="进程间的通信"></a>进程间的通信</h3><p>进程间通信就是在不同进程之间传播或交换信息，那么不同进程之间存在着什么双方都可以访问的介质呢？进程的用户空间是互相独立的，一般而言是不能互相访问的，唯一的例外是共享内存区。但是，系统空间却是“公共场所”，所以内核显然可以提供这样的条件。除此以外，那就是双方都可以访问的外设了。在这个意义上，两个进程当然也可以通过磁盘上的普通文件交换信息，或者通过“注册表”或其它数据库中的某些表项和记录交换信息。广义上这也是进程间通信的手段，但是一般都不把这算作“进程间通信”。因为那些通信手段的效率太低了，而人们对进程间通信的要求是要有一定的实时性。 </p>
-<a id="more"></a>
-
-<p>进程间通信主要包括<strong>管道</strong>,  <strong>系统IPC(包括消息队列,信号量,共享存储)</strong>, <strong>SOCKET</strong>.</p>
-<h4 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h4><ol>
-<li>普通管道PIPE, 通常有种限制,一是半双工,只能单向传输；;二是只能在父子进程间使用</li>
-<li>流管道s_pipe: 去除了第一种限制,可以双向传输。</li>
-<li>命名管道:name_pipe, 去除了第二种限制,可以在许多并不相关的进程之间进行通讯。</li>
-</ol>
-<p>管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p>
-<p>系统IPC的三种方式类同,都是使用了内核里的标识符来识别.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 有名管道 (named pipe) ： 有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</span><br><span class="line"># 信号量( semophore ) ： 信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</span><br><span class="line"># 消息队列( message queue ) ： 消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</span><br><span class="line"># 信号 ( sinal ) ： 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</span><br><span class="line"># 共享内存( shared memory ) ：共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号两，配合使用，来实现进程间的同步和通信。</span><br><span class="line"># 套接字( socket ) ： 套解口也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同及其间的进程通信。</span><br></pre></td></tr></table></figure>
-
-
-
-<p>FAQ1: 管道与文件描述符,文件指针的关系?<br>答: 其实管道的使用方法与文件类似,都能使用read,write,open等普通IO函数. 管道描述符来类似于文件描述符. 事实上, 管道使用的描述符, 文件指针和文件描述符最终都会转化成系统中SOCKET描述符. 都受到系统内核中SOCKET描述符的限制. 本质上LINUX内核源码中管道是通过空文件来实现.<br>FAQ2: 管道的使用方法?<br>答: 主要有下面几种方法: 1)pipe, 创建一个管道,返回2个管道描述符.通常用于父子进程之间通讯. 2)popen, pclose: 这种方式只返回一个管道描述符,常用于通信另一方是stdin or stdout; 3)mkpipe: 命名管道, 在许多进程之间进行交互.<br>FAQ3: 管道与系统IPC之间的优劣比较?<br>答: 管道: 优点是所有的UNIX实现都支持, 并且在最后一个访问管道的进程终止后,管道就被完全删除;缺陷是管道只允许单向传输或者用于父子进程之间.<br>系统IPC: 优点是功能强大,能在毫不相关进程之间进行通讯; 缺陷是关键字KEY_T使用了内核标识,占用了内核资源,而且只能被显式删除,而且不能使用SOCKET的一些机制,例如select,epoll等.<br>FAQ4: WINDOS进程间通信与LINUX进程间通信的关系?<br>答: 事实上,WINDOS的进程通信大部分移植于UNIX, WINDOS的剪贴板,文件映射等都可从UNIX进程通信的共享存储中找到影子.<br>FAQ5: 进程间通信与线程间通信之间的关系?<br>答: 因为WINDOWS运行的实体是线程, 狭义上的进程间通信其实是指分属于不同进程的线程之间的通讯.而单个进程之间的线程同步问题可归并为一种特殊的进程通信.它要用到内核支持的系统调用来保持线程之间同步. 通常用到的一些线程同步方法包括:Event, Mutex, 信号量Semaphore, 临界区资源等.</p>
+        <p>2020年新年伊始，一场流行性传染病席卷湖北，给全国人们带来了无尽的痛苦，无数医疗工作者奔赴前线，在这个沉痛的日子里，特向逝者表示哀悼，向英勇的医疗工作者表达崇高的敬意。</p>
 
       
 
@@ -183,17 +167,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -244,7 +217,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/04/%E7%BA%AA%E5%BF%B5%E5%8F%91%E7%94%9F%E5%9C%A82020%E5%B9%B4%E5%88%9D%E7%9A%84%E6%96%B0%E5%86%A0%E7%97%85%E6%AF%92%E4%BA%8B%E4%BB%B6/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -258,18 +231,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/04/04/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux命令行
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/04/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">操作系统-进程与线程</div>
+    <a href="/2020/04/04/%E8%AE%A1%E7%AE%97%E4%B8%89%E8%A7%92%E5%BD%A2%E9%9D%A2%E7%A7%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算三角形面积</div>
       <i class="icon-circle-right"></i>
     </a>
   
