@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 软件架构 | 雷浩文的博客</title>
+  <title>.gitignore无法生效 | 雷浩文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="雷浩文的博客">
-<meta property="og:url" content="http://yoursite.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/index.html">
+  <meta name="description" content=".gitignore失效了！？  最近这两周在做项目用到了git，由于大家的log信息不需要上传所以要设置.gitignore文件，但是一开始按照.gitignore 格式去写上传之后还有log，失效了，很迷惑，上网查了才知道，由于git是追踪变动，之前上传过的文件已经被追踪了，所以要修改先要清除git缓存。 修改代码如下 1234git rm -r --cached .git add .git">
+<meta property="og:type" content="article">
+<meta property="og:title" content=".gitignore无法生效">
+<meta property="og:url" content="http://yoursite.com/2020/06/25/gitignore%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/index.html">
 <meta property="og:site_name" content="雷浩文的博客">
+<meta property="og:description" content=".gitignore失效了！？  最近这两周在做项目用到了git，由于大家的log信息不需要上传所以要设置.gitignore文件，但是一开始按照.gitignore 格式去写上传之后还有log，失效了，很迷惑，上网查了才知道，由于git是追踪变动，之前上传过的文件已经被追踪了，所以要修改先要清除git缓存。 修改代码如下 1234git rm -r --cached .git add .git">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-24T16:08:32.000Z">
+<meta property="article:modified_time" content="2020-06-24T16:18:44.527Z">
 <meta property="article:author" content="雷浩文">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="雷浩文的博客" type="application/atom+xml">
@@ -134,60 +139,158 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-gitignore无法生效" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/18/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2020-03-18T06:04:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/18/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84/">软件架构设计课堂笔记</a>
+    <h1 class="article-title" itemprop="name">
+      .gitignore无法生效
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/06/25/gitignore%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/" class="archive-article-date">
+  	<time datetime="2020-06-24T16:08:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1> .gitignore失效了！？</h1>
+
+<p>最近这两周在做项目用到了git，由于大家的log信息不需要上传所以要设置.gitignore文件，但是一开始按照.gitignore 格式去写上传之后还有log，失效了，很迷惑，上网查了才知道，由于git是追踪变动，之前上传过的文件已经被追踪了，所以要修改先要清除git缓存。</p>
+<p>修改代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;增加了新功能&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p>额外说明：</p>
+<p>git库所在的文件夹中的文件大致有4种状态</p>
+<p>Untracked:</p>
+<p>未跟踪, 此文件在文件夹中, 但并没有加入到git库, 不参与版本控制. 通过git add 状态变为Staged.</p>
+<p>Unmodify:<br>文件已经入库, 未修改, 即版本库中的文件快照内容与文件夹中完全一致. 这种类型的文件有两种去处, 如果它被修改,<br>而变为Modified. 如果使用git rm移出版本库, 则成为Untracked文件</p>
+<p>Modified:<br>文件已修改, 仅仅是修改, 并没有进行其他的操作. 这个文件也有两个去处, 通过git add可进入暂存staged状态,<br>使用git checkout 则丢弃修改过, 返回到unmodify状态, 这个git checkout即从库中取出文件, 覆盖当前修改</p>
+<p>Staged:<br>暂存状态. 执行git commit则将修改同步到库中, 这时库中的文件和本地文件又变为一致, 文件为Unmodify状态.<br>执行git reset HEAD filename取消暂存, 文件状态为Modified</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">软件架构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/25/gitignore%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/04/25/Java%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java类加载过程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -210,9 +313,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
