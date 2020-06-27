@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>正则表达式 | 雷浩文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为什么要用正则表达式？  今天在做项目时遇到一个问题，我需要取一个网页url的最后的不确定位数的数字，使用字符串切割工具做起来不太顺手也感觉代码写起来不优雅，上网搜解决办法搜到一句正则表达式，感觉精妙无比而且优雅，遂记录下来。 12345String s &#x3D; &quot;http&#x2F;&#x2F;lei8888haowen34.co23m&#x2F;p&#x2F;25&quot;;s &#x3D; s.replaceAll(&quot;.*[^\\d](?&#x3D;(\\d+)">
+  <meta name="description" content="为什么要用正则表达式？ 今天在做项目时遇到一个问题，我需要取一个网页url的最后的不确定位数的数字，使用字符串切割工具做起来不太顺手也感觉代码写起来不优雅，上网搜解决办法搜到一句正则表达式，感觉精妙无比而且优雅，遂记录下来。  12345String s &#x3D; &quot;http&#x2F;&#x2F;lei8888haowen34.co23m&#x2F;p&#x2F;25&quot;;s &#x3D; s.replaceAll(&quot;.*[^\\d](?&#x3D;(\\d+)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式">
 <meta property="og:url" content="http://yoursite.com/2020/06/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="雷浩文的博客">
-<meta property="og:description" content="为什么要用正则表达式？  今天在做项目时遇到一个问题，我需要取一个网页url的最后的不确定位数的数字，使用字符串切割工具做起来不太顺手也感觉代码写起来不优雅，上网搜解决办法搜到一句正则表达式，感觉精妙无比而且优雅，遂记录下来。 12345String s &#x3D; &quot;http&#x2F;&#x2F;lei8888haowen34.co23m&#x2F;p&#x2F;25&quot;;s &#x3D; s.replaceAll(&quot;.*[^\\d](?&#x3D;(\\d+)">
+<meta property="og:description" content="为什么要用正则表达式？ 今天在做项目时遇到一个问题，我需要取一个网页url的最后的不确定位数的数字，使用字符串切割工具做起来不太顺手也感觉代码写起来不优雅，上网搜解决办法搜到一句正则表达式，感觉精妙无比而且优雅，遂记录下来。  12345String s &#x3D; &quot;http&#x2F;&#x2F;lei8888haowen34.co23m&#x2F;p&#x2F;25&quot;;s &#x3D; s.replaceAll(&quot;.*[^\\d](?&#x3D;(\\d+)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-26T14:43:24.000Z">
-<meta property="article:modified_time" content="2020-06-26T15:24:11.311Z">
+<meta property="article:modified_time" content="2020-06-27T15:54:39.792Z">
 <meta property="article:author" content="雷浩文">
 <meta property="article:tag" content="正则表达式">
 <meta name="twitter:card" content="summary">
@@ -160,19 +160,19 @@
     <div class="article-entry" itemprop="articleBody">
       
          <h2>为什么要用正则表达式？</h2>
+今天在做项目时遇到一个问题，我需要取一个网页url的最后的不确定位数的数字，使用字符串切割工具做起来不太顺手也感觉代码写起来不优雅，上网搜解决办法搜到一句正则表达式，感觉精妙无比而且优雅，遂记录下来。
 
-<p>今天在做项目时遇到一个问题，我需要取一个网页url的最后的不确定位数的数字，使用字符串切割工具做起来不太顺手也感觉代码写起来不优雅，上网搜解决办法搜到一句正则表达式，感觉精妙无比而且优雅，遂记录下来。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"http//lei8888haowen34.co23m/p/25"</span>;</span><br><span class="line">s = s.replaceAll(<span class="string">".*[^\\d](?=(\\d+))"</span>,<span class="string">""</span>);</span><br><span class="line">System.out.println(s);</span><br><span class="line"></span><br><span class="line">console: <span class="number">25</span></span><br></pre></td></tr></table></figure>
 
 <p>正则表达式之优雅现得字符串切割工具太笨重了。</p>
 <a id="more"></a>
 
 <h2>什么是正则表达式</h2>
+正则表达式也是用来进行文本匹配的工具，像我们Windows里面 * 和 ? 作为搜索文件的通配符，我们会用*.doc 来搜索所有的word文档，正则表达式就是一个更加精确的的匹配工具，当然也更加复杂。
 
-<p>正则表达式也是用来进行文本匹配的工具，像我们Windows里面 * 和 ? 作为搜索文件的通配符，我们会用*.doc 来搜索所有的word文档，正则表达式就是一个更加精确的的匹配工具，当然也更加复杂。</p>
 <h2> 入门</h2>
+假设你在一篇英文小说里查找hi，你可以使用正则表达式hi。
 
-<p>假设你在一篇英文小说里查找hi，你可以使用正则表达式hi。</p>
 <p>它可以精确匹配这样的字符串：由两个字符组成，前一个字符是h,后一个是i。通常，处理正则表达式的工具会提供一个忽略大小写的选项，如果选中了这个选项，它可以匹配hi,HI,Hi,hI这四种情况中的任意一种。</p>
 <p>不幸的是，很多单词里包含hi这两个连续的字符，比如him,history,high等等。用hi来查找的话，这里边的hi也会被找出来。如果要精确地查找hi这个单词的话，我们应该使用\bhi\b。</p>
 <p>\b是正则表达式规定的一个特殊代码（好吧，某些人叫它<strong>元字符，metacharacter</strong>），代表着单词的开头或结尾，也就是单词的分界处。虽然通常英文的单词是由空格，标点符号或者换行来分隔的，但是\b并不匹配这些单词分隔字符中的任何一个，它<strong>只匹配一个位置</strong>。</p>
@@ -185,40 +185,16 @@
 <p>这里的\d是个新的元字符，匹配一位数字(0，或1，或2，或……)。-不是元字符，只匹配它本身——连字符(或者减号，或者中横线，或者随你怎么称呼它)。</p>
 <p>为了避免那么多烦人的重复，我们也可以这样写这个表达式：0\d{2}-\d{8}。这里\d后面的{2}({8})的意思是前面\d必须连续重复匹配2次(8次)。</p>
 <p><a href="https://deerchao.cn/tools/wegester/" target="_blank" rel="noopener">一个正则表达式测试网站</a></p>
-<h2>元字符
+<h2>元字符</h2>
+现在你已经知道几个很有用的元字符了，如\b,.,\*，还有\d.正则表达式里还有更多的元字符，比如\s匹配任意的空白符，包括空格，制表符(Tab)，换行符，中文全角空格等。\w匹配字母或数字或下划线或汉字等。
 
-</h2>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>下面来看看更多的例子：</p>
+<p>\ba\w*\b匹配以字母a开头的单词——先是某个单词开始处(\b)，然后是字母a,然后是任意数量的字母或数字(\w*)，最后是单词结束处(\b)。</p>
+<p>\d+匹配1个或更多连续的数字。这里的+是和*类似的元字符，不同的是*匹配重复任意次(可能是0次)，而+则匹配重复1次或更多次。</p>
+<p>\b\w{6}\b 匹配刚好6个字符的单词。</p>
+<p>表1.常用的元字符<br>代码    说明<br>.    匹配除换行符以外的任意字符<br>\w    匹配字母或数字或下划线或汉字<br>\s    匹配任意的空白符<br>\d    匹配数字<br>\b    匹配单词的开始或结束<br>^    匹配字符串的开始<br>$    匹配字符串的结束</p>
+<p>// to be done</p>
+<p><a href="https://deerchao.cn/tutorials/regex/regex.htm#mission" target="_blank" rel="noopener">参考文献</a></p>
 
       
 
@@ -430,7 +406,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">todo</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -438,7 +414,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color5">todo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,14 +430,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
               </li>
              
@@ -466,7 +438,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法笔记-哈希</a>
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,15 +446,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">软件架构</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法笔记-哈希</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,11 +454,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">软件架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">三角形面积公式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,7 +478,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">三角形面积公式</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>
