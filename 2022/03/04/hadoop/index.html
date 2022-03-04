@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 动态规划 | 雷浩文的博客</title>
+  <title>hadoop | 雷浩文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="雷浩文的博客">
-<meta property="og:url" content="http://yoursite.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/index.html">
+  <meta name="description" content="Hadoop学习笔记之HDFS ## HDFS  Hadoop 分布式系统框架中，首要的基础功能就是文件系统，在 Hadoop 中使用 FileSystem 这个抽象类来表示我们的文件系统，这个抽象类下面有很多子实现类，究竟使用哪一种，需要看我们具体的实现类，在我们实际工作中，用到的最多的就是HDFS(分布式文件系统)以及LocalFileSystem(本地文件系统)了。 在现代企业环境中，单机容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hadoop">
+<meta property="og:url" content="http://yoursite.com/2022/03/04/hadoop/index.html">
 <meta property="og:site_name" content="雷浩文的博客">
+<meta property="og:description" content="Hadoop学习笔记之HDFS ## HDFS  Hadoop 分布式系统框架中，首要的基础功能就是文件系统，在 Hadoop 中使用 FileSystem 这个抽象类来表示我们的文件系统，这个抽象类下面有很多子实现类，究竟使用哪一种，需要看我们具体的实现类，在我们实际工作中，用到的最多的就是HDFS(分布式文件系统)以及LocalFileSystem(本地文件系统)了。 在现代企业环境中，单机容">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/hadoop/hdfs%E6%9E%B6%E6%9E%84.jpg">
+<meta property="article:published_time" content="2022-03-04T08:20:36.000Z">
+<meta property="article:modified_time" content="2022-03-04T11:02:40.222Z">
 <meta property="article:author" content="雷浩文">
+<meta property="article:tag" content="hadoop">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/hadoop/hdfs%E6%9E%B6%E6%9E%84.jpg">
   
     <link rel="alternative" href="/atom.xml" title="雷浩文的博客" type="application/atom+xml">
   
@@ -134,60 +141,211 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-hadoop" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/10/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="archive-article-date">
-  	<time datetime="2020-04-10T14:48:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/10/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">算法笔记-动态规划</a>
+    <h1 class="article-title" itemprop="name">
+      hadoop
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2022/03/04/hadoop/" class="archive-article-date">
+  	<time datetime="2022-03-04T08:20:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1>Hadoop学习笔记之HDFS</h1>
+## HDFS
+
+<p>Hadoop 分布式系统框架中，首要的基础功能就是文件系统，在 Hadoop 中使用 FileSystem 这个抽象类来表示我们的文件系统，这个抽象类下面有很多子实现类，究竟使用哪一种，需要看我们具体的实现类，在我们实际工作中，用到的最多的就是HDFS(分布式文件系统)以及LocalFileSystem(本地文件系统)了。</p>
+<p>在现代企业环境中，单机容量无法存储庞大的数据，常常需要跨机存储。统一管理分布在集群上的文件系统称为<strong>分布式文件系统</strong>。</p>
+<p>HDFS（Hadoop  Distributed  File  System）是 Hadoop 项目的一个子项目。是 Hadoop 的核心组件之一，  Hadoop 非常适于存储大型数据 (比如 TB 和 PB)，其就是使用 HDFS 作为存储系统. HDFS 使用多台计算机存储文件，并且提供统一的访问接口，像是访问一个普通文件系统一样使用分布式文件系统。</p>
+<h2 id="HDFS架构"><a href="#HDFS架构" class="headerlink" title="HDFS架构"></a>HDFS架构</h2><p><img src="/assets/blogImg/hadoop/hdfs%E6%9E%B6%E6%9E%84.jpg" alt=""></p>
+<p>HDFS是一个主/从（Mater/Slave）体系结构，由三部分组成：<strong>NameNode</strong> 和 <strong>DataNode</strong> 以及 <strong>SecondaryNamenode</strong>：</p>
+<ul>
+<li><p>NameNode 负责管理整个<strong>文件系统的元数据</strong>，以及每一个路径（文件）所对应的数据块信息。</p>
+</li>
+<li><p>DataNode 负责管理用户的<strong>文件数据块</strong>，每一个数据块都可以在多个 DataNode 上存储多个副本，默认为3个。</p>
+</li>
+<li><p>Secondary NameNode 用来监控 HDFS 状态的辅助后台程序，每隔一段时间获取 HDFS 元数据的快照。最主要作用是<strong>辅助 NameNode 管理元数据信息</strong>。</p>
+</li>
+</ul>
+<h2 id="HDFD特性"><a href="#HDFD特性" class="headerlink" title="HDFD特性"></a>HDFD特性</h2><p>首先，它是一个文件系统，用于存储文件，通过统一的命名空间目录树来定位文件；</p>
+<p>其次，它是分布式的，由很多服务器联合起来实现其功能，集群中的服务器有各自的角色。</p>
+<p><strong>1. master/slave 架构</strong>（主从架构）</p>
+<p>HDFS 采用 master/slave 架构。一般一个 HDFS 集群是有一个 Namenode 和一定数目的 Datanode 组成。Namenode 是 HDFS 集群主节点，Datanode 是 HDFS 集群从节点，两种角色各司其职，共同协调完成分布式的文件存储服务。</p>
+<p><strong>2. 分块存储</strong></p>
+<p>HDFS 中的文件在物理上是分块存储（block）的，块的大小可以通过配置参数来规定，默认大小在 hadoop2.x 版本中是 128M。</p>
+<p><strong>3. 名字空间（NameSpace）</strong></p>
+<p>HDFS 支持传统的层次型文件组织结构。用户或者应用程序可以创建目录，然后将文件保存在这些目录里。文件系统名字空间的层次结构和大多数现有的文件系统类似：用户可以创建、删除、移动或重命名文件。<br>Namenode 负责维护文件系统的名字空间，任何对文件系统名字空间或属性的修改都将被 Namenode 记录下来。<br>HDFS 会给客户端提供一个统一的抽象目录树，客户端通过路径来访问文件，形如：hdfs://namenode:port/dir-a/dir-b/dir-c/file.data。</p>
+<p><strong>4. NameNode 元数据管理</strong></p>
+<p>我们把目录结构及文件分块位置信息叫做元数据。NameNode 负责维护整个 HDFS 文件系统的目录树结构，以及每一个文件所对应的 block 块信息（block 的 id，及所在的 DataNode 服务器）。</p>
+<p><strong>5. DataNode 数据存储</strong></p>
+<p>文件的各个 block 的具体存储管理由 DataNode 节点承担。每一个 block 都可以在多个 DataNode 上。DataNode 需要定时向 NameNode 汇报自己持有的 block 信息。存储多个副本（副本数量也可以通过参数设置 dfs.replication，默认是 3）</p>
+<p><strong>6. 副本机制</strong></p>
+<p>为了容错，文件的所有 block 都会有副本。每个文件的 block 大小和副本系数都是可配置的。应用程序可以指定某个文件的副本数目。副本系数可以在文件创建的时候指定，也可以在之后改变。</p>
+<p><strong>7. 一次写入，多次读出</strong></p>
+<p>HDFS 是设计成适应一次写入，多次读出的场景，且不支持文件的修改。正因为如此，HDFS 适合用来做大数据分析的底层存储服务，并不适合用来做网盘等应用，因为修改不方便，延迟大，网络开销大，成本太高。</p>
+<h2 id="HDFS的命令"><a href="#HDFS的命令" class="headerlink" title="HDFS的命令"></a>HDFS的命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">hdfs dfs -help </span><br><span class="line">#help</span><br><span class="line"></span><br><span class="line">hdfs dfs -ls  URI </span><br><span class="line">#ls展示文件列表</span><br><span class="line"></span><br><span class="line">hdfs  dfs -lsr URI  </span><br><span class="line">#在整个目录下递归执行ls, 与UNIX中的ls-R类似</span><br><span class="line"></span><br><span class="line">hdfs  dfs  -mkdir [-p] &lt;paths&gt;</span><br><span class="line">#以&lt;paths&gt;中的URI作为参数，创建目录。使用-p参数可以递归创建目录</span><br><span class="line"></span><br><span class="line">hdfs dfs -put &lt;localsrc &gt;  ... &lt;dst&gt;</span><br><span class="line">#将单个的源文件src或者多个源文件srcs从本地文件系统拷贝到目标文件系统中（&lt;dst&gt;对应的路径）。也可以从标准输入中读取输入，写入目标文件系统中</span><br><span class="line">#例如 hdfs dfs -put  &#x2F;rooot&#x2F;bigdata.txt  &#x2F;dir1</span><br><span class="line"></span><br><span class="line">hdfs  dfs -moveFromLocal  &lt;localsrc&gt;   &lt;dst&gt;</span><br><span class="line">#和put命令类似，但是源文件localsrc拷贝之后自身被删除</span><br><span class="line"></span><br><span class="line">hdfs dfs -copyFromLocal &lt;localsrc&gt; ... &lt;dst&gt;</span><br><span class="line">#从本地文件系统中拷贝文件到hdfs路径去</span><br><span class="line"></span><br><span class="line">hdfs dfs -appendToFile &lt;localsrc&gt; ... &lt;dst&gt;</span><br><span class="line">#追加一个或者多个文件到hdfs指定文件中.也可以从命令行读取输入.</span><br><span class="line">#例如 hdfs dfs -appendToFile  a.xml b.xml  &#x2F;big.xml</span><br><span class="line"></span><br><span class="line">hdfs dfs  -get [-ignorecrc ]  [-crc]  &lt;src&gt; &lt;localdst&gt;</span><br><span class="line">#将文件拷贝到本地文件系统。CRC 校验失败的文件通过-ignorecrc选项拷贝。 文件和CRC校验可以通过-CRC选项拷贝</span><br><span class="line">#作用 hdfs dfs  -get   &#x2F;bigdata.txt  &#x2F;export&#x2F;servers</span><br><span class="line"></span><br><span class="line">hdfs dfs -getmerge &lt;src&gt; &lt;localdst&gt;</span><br><span class="line">#合并下载多个文件，比如hdfs的目录 &#x2F;aaa&#x2F;下有多个文件:log.1, log.2,log.3,...</span><br><span class="line"></span><br><span class="line">hdfs dfs -copyToLocal &lt;src&gt; ... &lt;localdst&gt;</span><br><span class="line">#从hdfs拷贝到本地</span><br><span class="line"></span><br><span class="line">hdfs  dfs -mv URI   &lt;dest&gt;</span><br><span class="line">#将hdfs上的文件从原路径移动到目标路径（移动之后文件删除），该命令不能跨文件系统</span><br><span class="line">#例如 hdfs  dfs  -mv  &#x2F;dir1&#x2F;bigdata.txt   &#x2F;dir2</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -rm [-r] 【-skipTrash】 URI 【URI 。。。】</span><br><span class="line"># 删除参数指定的文件，参数可以有多个。此命令只删除文件和非空目录。</span><br><span class="line"># 如果指定-skipTrash选项，那么在回收站可用的情况下，该选项将跳过回收站而直接删除文件；</span><br><span class="line"># 否则，在回收站可用时，在HDFS Shell 中执行此命令，会将文件暂时放到回收站中。</span><br><span class="line">#例如 hdfs  dfs  -rm  -r  &#x2F;dir1</span><br><span class="line"></span><br><span class="line">hdfs  dfs  -cp URI [URI ...] &lt;dest&gt;</span><br><span class="line"># 将文件拷贝到目标路径中。如果&lt;dest&gt;为目录的话，可以将多个文件拷贝到该目录下。</span><br><span class="line"># -f   选项将覆盖目标，如果它已经存在。</span><br><span class="line"># -p   选项将保留文件属性（时间戳、所有权、许可、ACL、XAttr）。</span><br><span class="line">#例如 hdfs dfs -cp &#x2F;dir1&#x2F;a.txt  &#x2F;dir2&#x2F;bigdata.txt</span><br><span class="line"></span><br><span class="line">hdfs dfs  -cat  URI [uri  ...]</span><br><span class="line"># 将参数所指示的文件内容输出到stdout</span><br><span class="line">#例如 hdfs dfs  -cat &#x2F;bigdata.txt</span><br><span class="line"></span><br><span class="line">hdfs dfs -text path</span><br><span class="line"># 以字符形式打印一个文件的内容</span><br><span class="line"></span><br><span class="line">hdfs  dfs  -chmod  [-R]  URI[URI  ...]</span><br><span class="line"># 改变文件权限。如果使用  -R 选项，则对整个目录有效递归执行。使用这一命令的用户必须是文件的所属用户，或者超级用户。</span><br><span class="line"># 例如 hdfs dfs -chmod -R 777 &#x2F;bigdata.txt</span><br><span class="line"></span><br><span class="line">hdfs dfs  -df  -h  path</span><br><span class="line"># 统计文件系统的可用空间信息</span><br><span class="line"></span><br><span class="line">hdfs dfs -du -s -h path</span><br><span class="line"># 统计文件夹的大小信息</span><br><span class="line"></span><br><span class="line">hdfs dfs -count path</span><br><span class="line"># 统计一个指定目录下的文件节点数量</span><br><span class="line"></span><br><span class="line">hdfs dfs -setrep num filePath</span><br><span class="line"># 设置hdfs中文件的副本数量</span><br><span class="line"># 即使设置的超过了datanode的数量,副本的数量也最多只能和datanode的数量是一致的</span><br><span class="line"></span><br><span class="line">hdfs dfs  -expunge</span><br><span class="line"># 清空hdfs垃圾桶</span><br><span class="line"># 危险命令，谨慎使用</span><br></pre></td></tr></table></figure>
+
+<h2 id="HDFS的高级使用命令"><a href="#HDFS的高级使用命令" class="headerlink" title="HDFS的高级使用命令"></a>HDFS的高级使用命令</h2><h3 id="1-HDFS文件限额配置"><a href="#1-HDFS文件限额配置" class="headerlink" title="1. HDFS文件限额配置"></a>1. HDFS文件限额配置</h3><p>在多人共用HDFS的环境下，配置设置非常重要。特别是在 Hadoop 处理大量资料的环境，如果没有配额管理，很容易把所有的空间用完造成别人无法存取。<strong>HDFS 的配额设定是针对目录而不是针对账号，可以让每个账号仅操作某一个目录，然后对目录设置配置</strong>。</p>
+<p>HDFS 文件的限额配置允许我们以文件个数，或者文件大小来限制我们在某个目录下上传的文件数量或者文件内容总量，以便达到我们类似百度网盘网盘等限制每个用户允许上传的最大的文件的量。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -count -q -h /user/root/dir1  #查看配额信息</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-1-数量限额"><a href="#1-1-数量限额" class="headerlink" title="1.1 数量限额"></a>1.1 数量限额</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs  -mkdir -p /user/root/dir    </span><br><span class="line">#创建hdfs文件夹</span><br><span class="line"></span><br><span class="line">hdfs dfsadmin -setQuota <span class="number">2</span>  dir      </span><br><span class="line"># 给该文件夹下面设置最多上传两个文件，发现只能上传一个文件</span><br><span class="line"></span><br><span class="line">hdfs dfsadmin -clrQuota /user/root/dir  </span><br><span class="line"># 清除文件数量限制</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-2-空间大小限额"><a href="#1-2-空间大小限额" class="headerlink" title="1.2 空间大小限额"></a>1.2 空间大小限额</h4><p>在设置空间配额时，设置的空间至少是 block_size * 3 大小</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -setSpaceQuota 4k /user/root/dir   # 限制空间大小4KB</span><br><span class="line">hdfs dfs -put  /root/a.txt  /user/root/dir</span><br></pre></td></tr></table></figure>
+
+<p>生成任意大小文件的命令:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=1.txt  bs=1M count=2     #生成2M的文件</span><br></pre></td></tr></table></figure>
+
+
+
+<p>清除空间配额限制</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -clrSpaceQuota /user/root/dir</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-HDFS-的安全模式"><a href="#2-HDFS-的安全模式" class="headerlink" title="2. HDFS 的安全模式"></a>2. HDFS 的安全模式</h3><p><strong>安全模式是hadoop的一种保护机制，用于保证集群中的数据块的安全性</strong>。当集群启动的时候，会首先进入安全模式。当系统处于安全模式时会检查数据块的完整性。</p>
+<p>假设我们设置的副本数（即参数dfs.replication）是3，那么在datanode上就应该有3个副本存在，假设只存在2个副本，那么比例就是2/3=0.666。hdfs默认的副本率0.999。我们的副本率0.666明显小于0.999，因此系统会自动的复制副本到其他dataNode，使得副本率不小于0.999。如果系统中有5个副本，超过我们设定的3个副本，那么系统也会删除多于的2个副本。</p>
+<p><strong>在安全模式状态下，文件系统只接受读数据请求，而不接受删除、修改等变更请求</strong>。在，当整个系统达到安全标准时，HDFS自动离开安全模式。30s安全模式操作命令</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hdfs  dfsadmin  -safemode  get #查看安全模式状态</span><br><span class="line">hdfs  dfsadmin  -safemode  enter #进入安全模式</span><br><span class="line">hdfs  dfsadmin  -safemode  leave #离开安全模式</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2022/03/04/hadoop/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/09/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D-KMP%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构-字符串匹配-KMP算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -210,9 +368,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
