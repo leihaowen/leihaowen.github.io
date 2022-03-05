@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/Hadoop%E4%B9%8BMapReduce/maptask%E9%85%8D%E7%BD%AE.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/Hadoop%E4%B9%8BMapReduce/reduceTask%E6%9C%BA%E5%88%B6.jpg">
 <meta property="article:published_time" content="2022-03-05T09:03:07.000Z">
-<meta property="article:modified_time" content="2022-03-05T16:33:21.842Z">
+<meta property="article:modified_time" content="2022-03-05T16:43:07.328Z">
 <meta property="article:author" content="雷浩文">
 <meta property="article:tag" content="hadoop">
 <meta name="twitter:card" content="summary">
@@ -168,20 +168,16 @@
       
         <h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><h2 id="1-MapReduce-介绍"><a href="#1-MapReduce-介绍" class="headerlink" title="1. MapReduce 介绍"></a>1. MapReduce 介绍</h2><p>MapReduce思想在生活中处处可见。或多或少都曾接触过这种思想。MapReduce的思想核心是“分而治之”，适用于大量复杂的任务处理场景（大规模数据处理场景）。即使是发布过论文实现分布式计算的谷歌也只是实现了这种思想，而不是自己原创。</p>
 <ul>
-<li><p>Map负责“分”，即把复杂的任务分解为若干个“简单的任务”来并行处理。可以进行拆分的前提是这些小任务可以并行计算，彼此间几乎没有依赖关系。</p>
-</li>
-<li><p>Reduce负责“合”，即对map阶段的结果进行全局汇总。</p>
-</li>
-<li><p>MapReduce运行在yarn集群</p>
-</li>
+<li>Map负责“分”，即把复杂的任务分解为若干个“简单的任务”来并行处理。可以进行拆分的前提是这些小任务可以并行计算，彼此间几乎没有依赖关系。</li>
+<li>Reduce负责“合”，即对map阶段的结果进行全局汇总。</li>
+<li>MapReduce运行在yarn集群</li>
 </ul>
 <ol>
-<li><ol>
 <li>ResourceManager</li>
 <li>NodeManager</li>
 </ol>
-</li>
-</ol>
+<a id="more"></a>
+
 <p>这两个阶段合起来正是MapReduce思想的体现。</p>
 <p><img src="/assets/blogImg/hadoop/MapReduce%E6%B5%81%E7%A8%8B.jpg" alt=""></p>
 <p>还有一个比较形象的语言解释MapReduce:</p>
@@ -268,27 +264,19 @@
 </ol>
 <p>同样的道理，在我们的hadoop2.x当中，reducer类也是一个抽象类，抽象类允许我们可以继承这个抽象类之后，重新覆写抽象类当中的方法，实现我们的逻辑的自定义控制。接下来我们也来介绍一下Reducer抽象类当中的四个抽象方法：</p>
 <ol>
-<li><p><strong>setup方法</strong>：在我们的ReduceTask初始化之后马上调用，我们的一些对象的初始化工作，都可以在这个类当中实现</p>
-</li>
-<li><p><strong>reduce方法</strong>：所有从MapTask发送过来的数据，都会调用reduce方法，这个方法也是我们reduce当中最重要的方法，可以通过这个方法实现我们的数据的处理</p>
-</li>
-<li><p><strong>cleanup方法</strong>：在我们整个ReduceTask执行完成之后，会马上调用cleanup方法，这个方法主要就是在我们reduce阶段处理做我们一些清理工作，例如连接的断开，资源的关闭等等</p>
-</li>
-<li><p><strong>run方法</strong>：如果我们需要更精细的控制我们的整个ReduceTask的执行，那么我们可以覆写这个方法，实现对我们所有的ReduceTask更精确的操作控制</p>
-</li>
+<li><strong>setup方法</strong>：在我们的ReduceTask初始化之后马上调用，我们的一些对象的初始化工作，都可以在这个类当中实现</li>
+<li><strong>reduce方法</strong>：所有从MapTask发送过来的数据，都会调用reduce方法，这个方法也是我们reduce当中最重要的方法，可以通过这个方法实现我们的数据的处理</li>
+<li><strong>cleanup方法</strong>：在我们整个ReduceTask执行完成之后，会马上调用cleanup方法，这个方法主要就是在我们reduce阶段处理做我们一些清理工作，例如连接的断开，资源的关闭等等</li>
+<li><strong>run方法</strong>：如果我们需要更精细的控制我们的整个ReduceTask的执行，那么我们可以覆写这个方法，实现对我们所有的ReduceTask更精确的操作控制</li>
 </ol>
 <h2 id="4-MapReduce的运行机制详解"><a href="#4-MapReduce的运行机制详解" class="headerlink" title="4. MapReduce的运行机制详解"></a>4. MapReduce的运行机制详解</h2><h3 id="4-1-MapTask-工作机制"><a href="#4-1-MapTask-工作机制" class="headerlink" title="4.1 MapTask 工作机制"></a>4.1 MapTask 工作机制</h3><p><img src="/assets/blogImg/Hadoop%E4%B9%8BMapReduce/map%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg" alt=""></p>
 <p>简单概述：inputFile通过split被逻辑切分为多个split文件，通过Record按行读取内容给map（用户自己实现的）进行处理，数据被map处理结束之后交给OutputCollector收集器，对其结果key进行分区（默认使用hash分区），然后写入buffer，每个map task都有一个内存缓冲区，存储着map的输出结果，当缓冲区快满的时候需要将缓冲区的数据以一个临时文件的方式存放到磁盘，当整个map task结束后再对磁盘中这个map task产生的所有临时文件做合并，生成最终的正式输出文件，然后等待reduce task来拉数据</p>
 <p><strong>详细步骤</strong></p>
 <ol>
-<li><p>读取数据组件 <strong>InputFormat</strong> (默认 TextInputFormat) 会通过 getSplits 方法对输入目录中文件进行逻辑切片规划得到 block, 有多少个 block就对应启动多少个 MapTask</p>
-</li>
-<li><p>将输入文件切分为 block 之后, 由 RecordReader 对象 (默认是LineRecordReader) 进行<strong>读取</strong>, 以 \n 作为分隔符, 读取一行数据, 返回 &lt;key，value&gt;. Key 表示每行首字符偏移值, Value 表示这一行文本内容</p>
-</li>
-<li><p>读取 block 返回 &lt;key,value&gt;, <strong>进入用户自己继承的 Mapper 类中</strong>，执行用户重写的 map 函数, RecordReader 读取一行这里调用一次</p>
-</li>
-<li><p>Mapper 逻辑结束之后, 将 Mapper 的每条结果通过 context.write 进行collect数据收集. 在 collect 中, 会先对其进行分区处理，默认使用 <strong>HashPartitioner</strong></p>
-</li>
+<li>读取数据组件 <strong>InputFormat</strong> (默认 TextInputFormat) 会通过 getSplits 方法对输入目录中文件进行逻辑切片规划得到 block, 有多少个 block就对应启动多少个 MapTask</li>
+<li>将输入文件切分为 block 之后, 由 RecordReader 对象 (默认是LineRecordReader) 进行<strong>读取</strong>, 以 \n 作为分隔符, 读取一行数据, 返回 &lt;key，value&gt;. Key 表示每行首字符偏移值, Value 表示这一行文本内容</li>
+<li>读取 block 返回 &lt;key,value&gt;, <strong>进入用户自己继承的 Mapper 类中</strong>，执行用户重写的 map 函数, RecordReader 读取一行这里调用一次</li>
+<li>Mapper 逻辑结束之后, 将 Mapper 的每条结果通过 context.write 进行collect数据收集. 在 collect 中, 会先对其进行分区处理，默认使用 <strong>HashPartitioner</strong></li>
 </ol>
 <blockquote>
 <p>MapReduce 提供 Partitioner 接口, 它的作用就是根据 Key 或 Value 及 Reducer 的数量来决定当前的这对输出数据最终应该交由哪个 Reduce task 处理, 默认对 Key Hash 后再以 Reducer 数量取模. 默认的取模方式只是为了平均 Reducer 的处理能力, 如果用户自己对 Partitioner 有需求, 可以订制并设置到 Job 上。</p>
@@ -319,7 +307,7 @@
 <li><strong>合并排序</strong>。把分散的数据合并成一个大的数据后，还会再对合并后的数据排序。</li>
 <li><strong>对排序后的键值对调用reduce方法</strong>，键相等的键值对调用一次reduce方法，每次调用会产生零个或者多个键值对，最后把这些输出的键值对写入到HDFS文件中。</li>
 </ol>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3>
+
       
 
       
@@ -526,11 +514,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">todo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">todo</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,14 +534,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -558,11 +542,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
+                <a href="javascript:void(0)" class="js-tag color2">乐观锁悲观锁</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">乐观锁悲观锁</a>
+                <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,11 +558,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,15 +570,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法笔记-哈希</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,19 +582,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">软件架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">三角形面积公式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">软件架构</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">软件架构设计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>
