@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>远程部署mysql实战 | 雷浩文的博客</title>
+  <title>RabbitMQ的高级特性 | 雷浩文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="由于最近在做一个项目，很多同学的MySQL搭不好还出现很多问题，每个人的账号密码都不一样，每次pull下来都要改密码才能启动，所以我在远程主机上搭了MySQL以帮助项目简便开展。 特别鸣谢羊哥 https:&#x2F;&#x2F;www.codesheep.cn&#x2F; 提供的Linux上MySQL安装指南。 to be done">
+  <meta name="description" content="RabbitMQ的高级特性1. 消息可靠投递在使用RabbitMQ时，作为消息发送方，希望杜绝消息丢失或投递失败的情况。RabbitMQ为我们提供了两种方式用来控制消息的投递可靠性模式。  confirm 确认模式 return 退回模式  消息传递的路径： producer –&gt; rabbitmq broker –&gt; exchange –&gt; queue –&gt; consum">
 <meta property="og:type" content="article">
-<meta property="og:title" content="远程部署mysql实战">
-<meta property="og:url" content="http://yoursite.com/2020/06/25/%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2mysql%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:title" content="RabbitMQ的高级特性">
+<meta property="og:url" content="http://yoursite.com/2022/03/27/RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/index.html">
 <meta property="og:site_name" content="雷浩文的博客">
-<meta property="og:description" content="由于最近在做一个项目，很多同学的MySQL搭不好还出现很多问题，每个人的账号密码都不一样，每次pull下来都要改密码才能启动，所以我在远程主机上搭了MySQL以帮助项目简便开展。 特别鸣谢羊哥 https:&#x2F;&#x2F;www.codesheep.cn&#x2F; 提供的Linux上MySQL安装指南。 to be done">
+<meta property="og:description" content="RabbitMQ的高级特性1. 消息可靠投递在使用RabbitMQ时，作为消息发送方，希望杜绝消息丢失或投递失败的情况。RabbitMQ为我们提供了两种方式用来控制消息的投递可靠性模式。  confirm 确认模式 return 退回模式  消息传递的路径： producer –&gt; rabbitmq broker –&gt; exchange –&gt; queue –&gt; consum">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-24T16:23:17.000Z">
-<meta property="article:modified_time" content="2020-06-24T16:33:44.766Z">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/RabbitMQ/%E6%AD%BB%E4%BF%A1.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/RabbitMQ/%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97.png">
+<meta property="article:published_time" content="2022-03-27T10:10:51.000Z">
+<meta property="article:modified_time" content="2022-03-27T16:45:05.653Z">
 <meta property="article:author" content="雷浩文">
-<meta property="article:tag" content="linux">
+<meta property="article:tag" content="RabbitMQ">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/RabbitMQ/%E6%AD%BB%E4%BF%A1.png">
   
     <link rel="alternative" href="/atom.xml" title="雷浩文的博客" type="application/atom+xml">
   
@@ -139,30 +142,83 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-远程部署mysql实战" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-RabbitMQ的高级特性" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      远程部署mysql实战
+      RabbitMQ的高级特性
     </h1>
   
 
         
-        <a href="/2020/06/25/%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2mysql%E5%AE%9E%E6%88%98/" class="archive-article-date">
-  	<time datetime="2020-06-24T16:23:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-25</time>
+        <a href="/2022/03/27/RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" class="archive-article-date">
+  	<time datetime="2022-03-27T10:10:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>由于最近在做一个项目，很多同学的MySQL搭不好还出现很多问题，每个人的账号密码都不一样，每次pull下来都要改密码才能启动，所以我在远程主机上搭了MySQL以帮助项目简便开展。</p>
-<p>特别鸣谢羊哥 <a href="https://www.codesheep.cn/" target="_blank" rel="noopener">https://www.codesheep.cn/</a> 提供的Linux上MySQL安装指南。</p>
-<p>to be done</p>
+        <h1 id="RabbitMQ的高级特性"><a href="#RabbitMQ的高级特性" class="headerlink" title="RabbitMQ的高级特性"></a>RabbitMQ的高级特性</h1><h2 id="1-消息可靠投递"><a href="#1-消息可靠投递" class="headerlink" title="1. 消息可靠投递"></a>1. 消息可靠投递</h2><p>在使用RabbitMQ时，作为消息发送方，希望杜绝消息丢失或投递失败的情况。RabbitMQ为我们提供了两种方式用来控制消息的投递可靠性模式。</p>
+<ul>
+<li>confirm 确认模式</li>
+<li>return 退回模式</li>
+</ul>
+<p>消息传递的路径：</p>
+<p>producer –&gt; rabbitmq broker –&gt; exchange –&gt; queue –&gt; consumer</p>
+<ul>
+<li>消息从producer到exchange则会返回一个confirmCallback。</li>
+<li>消息从exchange–&gt;queue投递<strong>失败</strong>则会返回一个returnCallback。</li>
+</ul>
+<a id="more"></a>
 
+<h2 id="2-Consumer-ACK"><a href="#2-Consumer-ACK" class="headerlink" title="2. Consumer ACK"></a>2. Consumer ACK</h2><ul>
+<li>自动确认：acknowledge=”none”</li>
+<li>手动确认：acknowledge=”manual”</li>
+<li>更据异常情况确认：acknowledge=”auto”（不常用）</li>
+</ul>
+<p>自动确认就是消费者收到就确认，并且移除消息缓存中的message，但是业务中很可能处理出现异常，那么消息就会丢失。</p>
+<p>如果设置手动确认方式，则再业务处理成功后，调用channel.basicACK(), 手动签收，如果出现异常，则调用channel.basicNack()方法，让其自动重新发送消息。</p>
+<h2 id="3-消费端限流"><a href="#3-消费端限流" class="headerlink" title="3. 消费端限流"></a>3. 消费端限流</h2><ol>
+<li><p>确保ack机制为手动确认</p>
+</li>
+<li><p>listener-container配置属性</p>
+<p>​        perfetch = 1, 表示消费者端每次从mq拉去一条消息来消费，直到手动确认消费完毕后，才会继续拉取下一条消息。</p>
+</li>
+</ol>
+<h2 id="4-TTL-Time-To-Live"><a href="#4-TTL-Time-To-Live" class="headerlink" title="4. TTL (Time To Live)"></a>4. TTL (Time To Live)</h2><p>TTL 存活时间</p>
+<p>当消息到达存活时间没有被消费，则会被自动清除。</p>
+<p>RabbitMQ可以对消息设置过期时间（expiration 单位毫秒），也可以对整个队列设置过期时间（x-message-ttl）单位毫秒</p>
+<p>如果队列和消息都设置了过期时间，以时间短的为准</p>
+<p>队列过期后会将队列所有消息移除</p>
+<p>消息过期后，只有消息在队列顶端，才会判断其是否过期（移除）</p>
+<h2 id="5-死信队列"><a href="#5-死信队列" class="headerlink" title="5. 死信队列"></a>5. 死信队列</h2><p>死信队列DLX。Dead Letter Exchange（死信交换机），当消息成为Dead message后，可以被重新发送到另一个交换机，这个交换机就是DLX。</p>
+<p>x-dead-letter-exchange; 死信交换机名称</p>
+<p>x-dead-letter-routing-key；发送给死信交换机的routingkey</p>
+<p><img src="/assets/blogImg/RabbitMQ/%E6%AD%BB%E4%BF%A1.png" alt=""></p>
+<p>queue1如何绑定死信交换机？</p>
+<p>消息什么时候成为死信？</p>
+<ul>
+<li>队列长度达到限制</li>
+<li>消费者拒接消费消息，basicNack/basicReject，并且不把消息重新放入原目标队列，requeue = false；</li>
+<li>原队列存在消息过期设置，消息到达超时时间未被消费；</li>
+</ul>
+<h2 id="6-延迟队列"><a href="#6-延迟队列" class="headerlink" title="6. 延迟队列"></a>6. 延迟队列</h2><p>延迟队列，即消息进入队列后不会立即被消费，只有到达指定时间后，才会被消费</p>
+<p>例如：</p>
+<ul>
+<li>下单后，30分钟未支付，取消订单，回滚库存。</li>
+</ul>
+<p>实现方式：</p>
+<ol>
+<li>定时器（不优雅）</li>
+<li>延迟队列</li>
+</ol>
+<p>虽然RabbitMQ未提供延迟队列功能，但是可以使用TTL+死信队列组合实现延迟队列的效果</p>
+<p><img src="/assets/blogImg/RabbitMQ/%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97.png" alt=""></p>
+<h2 id="7-日志与监控"><a href="#7-日志与监控" class="headerlink" title="7. 日志与监控"></a>7. 日志与监控</h2><h2 id="8-消息可靠性分析与追踪"><a href="#8-消息可靠性分析与追踪" class="headerlink" title="8. 消息可靠性分析与追踪"></a>8. 消息可靠性分析与追踪</h2><h2 id="9-管理"><a href="#9-管理" class="headerlink" title="9. 管理"></a>9. 管理</h2><h2 id="RabbitMQ应用问题"><a href="#RabbitMQ应用问题" class="headerlink" title="RabbitMQ应用问题"></a>RabbitMQ应用问题</h2><h3 id="1-消息可靠性保障"><a href="#1-消息可靠性保障" class="headerlink" title="1. 消息可靠性保障"></a>1. 消息可靠性保障</h3><h3 id="2-消息幂等性处理"><a href="#2-消息幂等性处理" class="headerlink" title="2. 消息幂等性处理"></a>2. 消息幂等性处理</h3>
       
 
       
@@ -175,7 +231,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RabbitMQ</a>
         		</li>
       		
 		</ul>
@@ -231,7 +287,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/25/%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2mysql%E5%AE%9E%E6%88%98/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2022/03/27/RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -245,18 +301,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          正则表达式
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/06/25/gitignore%E6%97%A0%E6%B3%95%E7%94%9F%E6%95%88/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">.gitignore无法生效</div>
+    <a href="/2022/03/25/RabbitMQ/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RabbitMQ</div>
       <i class="icon-circle-right"></i>
     </a>
   
