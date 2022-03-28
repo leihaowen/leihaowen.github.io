@@ -17,8 +17,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/RabbitMQ/%E6%AD%BB%E4%BF%A1.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/RabbitMQ/%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/RabbitMQ/%E6%B6%88%E6%81%AF%E5%8F%AF%E9%9D%A0%E6%80%A7%E4%BF%9D%E9%9A%9C.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/RabbitMQ/%E6%B6%88%E6%81%AF%E5%B9%82%E7%AD%89%E6%80%A7.png">
 <meta property="article:published_time" content="2022-03-27T10:10:51.000Z">
-<meta property="article:modified_time" content="2022-03-27T16:45:05.653Z">
+<meta property="article:modified_time" content="2022-03-28T07:07:55.017Z">
 <meta property="article:author" content="雷浩文">
 <meta property="article:tag" content="RabbitMQ">
 <meta name="twitter:card" content="summary">
@@ -218,7 +220,27 @@
 </ol>
 <p>虽然RabbitMQ未提供延迟队列功能，但是可以使用TTL+死信队列组合实现延迟队列的效果</p>
 <p><img src="/assets/blogImg/RabbitMQ/%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97.png" alt=""></p>
-<h2 id="7-日志与监控"><a href="#7-日志与监控" class="headerlink" title="7. 日志与监控"></a>7. 日志与监控</h2><h2 id="8-消息可靠性分析与追踪"><a href="#8-消息可靠性分析与追踪" class="headerlink" title="8. 消息可靠性分析与追踪"></a>8. 消息可靠性分析与追踪</h2><h2 id="9-管理"><a href="#9-管理" class="headerlink" title="9. 管理"></a>9. 管理</h2><h2 id="RabbitMQ应用问题"><a href="#RabbitMQ应用问题" class="headerlink" title="RabbitMQ应用问题"></a>RabbitMQ应用问题</h2><h3 id="1-消息可靠性保障"><a href="#1-消息可靠性保障" class="headerlink" title="1. 消息可靠性保障"></a>1. 消息可靠性保障</h3><h3 id="2-消息幂等性处理"><a href="#2-消息幂等性处理" class="headerlink" title="2. 消息幂等性处理"></a>2. 消息幂等性处理</h3>
+<h2 id="7-日志与监控"><a href="#7-日志与监控" class="headerlink" title="7. 日志与监控"></a>7. 日志与监控</h2><p>日志默认存储在/var/log/rabbitmq/rabbit@xxx.log</p>
+<h2 id="8-消息可靠性分析与追踪"><a href="#8-消息可靠性分析与追踪" class="headerlink" title="8. 消息可靠性分析与追踪"></a>8. 消息可靠性分析与追踪</h2><p>在使用消息中间件的过程中，难免会出现某条消息异常丢失的情况，在RabbitMQ中可以使用Firehose和rabbitmq_tracing 插件功能来实现消息追踪。</p>
+<p><strong>firehose</strong></p>
+<blockquote>
+<p>firehose的机制是将生产者投递给rabbitmq的消息，rabbitmq投递给消费者的消息按照指定的格式发送到默认的exchange上。这个默认的exchange的名称为amq.rabbitmq.trace,它是一个topic类型的exchange。发送到这个exchange.上的消息的routing key为publish.exchangename和deliver.queuename.其中exchangename和queuename为实际exchange和queue的名称， 分别对应生产者投递到exchange的消息，和消费者从queue上获取的消息。</p>
+<p>rabbitmqctl trace_on 开启Firehose</p>
+<p>rabbitmqctl trace_off 关闭Firehose</p>
+</blockquote>
+<p><strong>rabbitmq_tracing</strong></p>
+<blockquote>
+<p>rabbitmq-plugins enable rabbitmq_tracing 启用</p>
+<p>将信息记录为日志</p>
+</blockquote>
+<h2 id="RabbitMQ应用问题"><a href="#RabbitMQ应用问题" class="headerlink" title="RabbitMQ应用问题"></a>RabbitMQ应用问题</h2><h3 id="1-消息可靠性保障"><a href="#1-消息可靠性保障" class="headerlink" title="1. 消息可靠性保障"></a>1. 消息可靠性保障</h3><p>如何确保百分百信息发送成功？</p>
+<p><img src="/assets/blogImg/RabbitMQ/%E6%B6%88%E6%81%AF%E5%8F%AF%E9%9D%A0%E6%80%A7%E4%BF%9D%E9%9A%9C.png" alt=""></p>
+<h3 id="2-消息幂等性处理"><a href="#2-消息幂等性处理" class="headerlink" title="2. 消息幂等性处理"></a>2. 消息幂等性处理</h3><p>  幂等性指一次和多次请求某一个资源，对于资源本身应该具有同样的结果。也就是说，任意多次执行对资源本身所产生的影响均与一次执行的影响相同。</p>
+<p>在MQ中指，消费多条相同的消息，得到与消费该消息一次相同的结果。  </p>
+<p><img src="/assets/blogImg/RabbitMQ/%E6%B6%88%E6%81%AF%E5%B9%82%E7%AD%89%E6%80%A7.png" alt=""></p>
+<p>集群镜像配置</p>
+<p>负载均衡配置（HaProxy）</p>
+
       
 
       
@@ -300,6 +322,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2022/03/28/Java%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java基础
+        
+      </div>
+    </a>
   
   
     <a href="/2022/03/25/RabbitMQ/" id="article-nav-older" class="article-nav-link-wrap">
@@ -425,7 +456,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GFS</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -433,15 +464,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">GFS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">todo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -457,11 +484,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">redisR</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -469,7 +496,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
+                <a href="javascript:void(0)" class="js-tag color2">redisR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,7 +504,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+                <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -485,7 +512,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,7 +524,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,7 +540,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color2">软件架构设计</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,14 +549,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">软件架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">软件架构设计</a>
               </li>
              
               <li class="article-tag-list-item">

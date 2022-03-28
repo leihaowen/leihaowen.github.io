@@ -6,26 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Visibility-culling-based geometric rendering of large-scale particle data | 雷浩文的博客</title>
+  <title>Java基础 | 雷浩文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="基于可见性剔除的大规模粒子数据几何绘制 论文信息: Wang, Huawei; Xiao, Li; Cao, Yi; Ai, Zhiwei; Xu, Pingjun  (2016).  [IEEE 2016 International Conference on Virtual Reality and Visualization (ICVRV) - Hangzhou, China (2016.9.">
+  <meta name="description" content="Java基础JRE和JDKJRE （Java Runting Environment）Java运行时环境，包括JVM和运行时所需要的核心类库。 如果需要运行一个已有的Java程序，则只需要安装JRE。 JDK（Java Development Kit）Java程序开发工具包，包含JRE和开发人员使用的工具。 其中编译工具（javac.exe）和运行工具（java.exe）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Visibility-culling-based geometric rendering of large-scale particle data">
-<meta property="og:url" content="http://yoursite.com/2022/03/11/Visibility-culling-based-geometric-rendering-of-large-scale-particle-data/index.html">
+<meta property="og:title" content="Java基础">
+<meta property="og:url" content="http://yoursite.com/2022/03/28/Java%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="雷浩文的博客">
-<meta property="og:description" content="基于可见性剔除的大规模粒子数据几何绘制 论文信息: Wang, Huawei; Xiao, Li; Cao, Yi; Ai, Zhiwei; Xu, Pingjun  (2016).  [IEEE 2016 International Conference on Virtual Reality and Visualization (ICVRV) - Hangzhou, China (2016.9.">
+<meta property="og:description" content="Java基础JRE和JDKJRE （Java Runting Environment）Java运行时环境，包括JVM和运行时所需要的核心类库。 如果需要运行一个已有的Java程序，则只需要安装JRE。 JDK（Java Development Kit）Java程序开发工具包，包含JRE和开发人员使用的工具。 其中编译工具（javac.exe）和运行工具（java.exe）">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95.png">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/9%E7%90%83%E9%81%AE%E6%8C%A1.png">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E4%B8%8B%E7%9A%84%E7%9B%B8%E4%BC%BC%E5%85%B3%E7%B3%BB.png">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E5%AE%9E%E9%AA%8C%E7%B2%92%E5%AD%90.png">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E5%AE%9E%E9%AA%8C%E6%95%88%E6%9E%9C%E5%9B%BE.png">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E4%B8%8D%E5%90%8C%E8%A7%86%E7%82%B9.png">
-<meta property="article:published_time" content="2022-03-11T09:35:27.000Z">
-<meta property="article:modified_time" content="2022-03-11T16:34:39.621Z">
+<meta property="article:published_time" content="2022-03-28T12:54:54.000Z">
+<meta property="article:modified_time" content="2022-03-28T15:25:53.656Z">
 <meta property="article:author" content="雷浩文">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95.png">
   
     <link rel="alternative" href="/atom.xml" title="雷浩文的博客" type="application/atom+xml">
   
@@ -145,99 +139,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Visibility-culling-based-geometric-rendering-of-large-scale-particle-data" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java基础" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Visibility-culling-based geometric rendering of large-scale particle data
+      Java基础
     </h1>
   
 
         
-        <a href="/2022/03/11/Visibility-culling-based-geometric-rendering-of-large-scale-particle-data/" class="archive-article-date">
-  	<time datetime="2022-03-11T09:35:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-11</time>
+        <a href="/2022/03/28/Java%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+  	<time datetime="2022-03-28T12:54:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="基于可见性剔除的大规模粒子数据几何绘制"><a href="#基于可见性剔除的大规模粒子数据几何绘制" class="headerlink" title="基于可见性剔除的大规模粒子数据几何绘制"></a>基于可见性剔除的大规模粒子数据几何绘制</h1><blockquote>
-<p>论文信息: Wang, Huawei; Xiao, Li; Cao, Yi; Ai, Zhiwei; Xu, Pingjun  (2016).  [IEEE 2016 International Conference on Virtual Reality and Visualization (ICVRV) - Hangzhou, China (2016.9.24-2016.9.26)] 2016 International Conference on Virtual Reality and Visualization (ICVRV) - Visibility-Culling-Based Geometric Rendering of Large-Scale Particle Data. , (), 197–203.         doi:10.1109/ICVRV.2016.41     </p>
-</blockquote>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>这篇文章为了有效地可视化大规模粒子数据，提出了一种基于可见性剔除的几何绘制算法。在该算法中，根据粒子在两种粒度下的可见性来剔除粒子。OpenGL视图截头体之外的所有数据补丁首先作为粗略剔除被丢弃。然后，剩余的粒子将根据九个球体的遮挡规则判断其可见性。 所有看不见的粒子将被抛弃。随后，如果实际渲染了粒子球体，将根据其在屏幕上的投影宽度以适当的分辨率自适应地对其进行离散。实验表明，该算法能够有效地剔除遮挡粒子，并在分布式存储并行计算机上高效地绘制大规模粒子数据。 </p>
-<p>*<em>关键词：粒子渲染；遮挡剔除；九球闭塞；可见性剔除；并行渲染；  *</em></p>
+        <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><h2 id="JRE和JDK"><a href="#JRE和JDK" class="headerlink" title="JRE和JDK"></a>JRE和JDK</h2><p><strong>JRE</strong> （Java Runting Environment）Java运行时环境，包括JVM和运行时所需要的核心类库。</p>
+<p>如果需要运行一个已有的Java程序，则只需要安装JRE。</p>
+<p><strong>JDK</strong>（Java Development Kit）Java程序开发工具包，包含JRE和开发人员使用的工具。</p>
+<p>其中编译工具（javac.exe）和运行工具（java.exe）</p>
 <a id="more"></a>
 
-<h2 id="1-绪论"><a href="#1-绪论" class="headerlink" title="1. 绪论"></a>1. 绪论</h2><p>粒子模拟是分子动力学、电磁辐射、激光聚变、裂变能等领域科学计算的重要形式。在科学应用中需要对超大规模的粒子数据进行可视化分析，这给我们带来了挑战。</p>
-<p>在当前的可视化系统中，粒子通常由球体表示，然后使用OpenGL对球体进行离散化和渲染。根据离散化精度，在OpenGL中，一个球体可以相应地生成10到1000个绘图原语。在面对数以亿计的粒子时，OpenGL需要处理数亿到数百亿甚至更多的绘图原语，这是无法承受的。</p>
-<p>例如，一个名为MD3D的分子动力学程序已经在32000个加工芯上实现了2.56亿个粒子的模拟，这揭示了含有纳米孔的金属材料的冲击和响应机制。经过过滤后，在一个时间步长内实际输出3800万个粒子。作为一种传统方法，我们直接渲染3800万个球体，在24个处理核心上耗时269秒。显然，速度令人无法忍受。</p>
-<p>很明显，大量的粒子球往往会相互阻挡，因此只有一小部分呈现给用户。在OpenGL中渲染大多数不可见的粒子是对渲染资源的严重浪费。另一方面，粒子球最终会投影到屏幕上，屏幕分辨率受到限制。要以相同的分辨率渲染离散化粒子球体，对于投影面积较小的粒子来说是多余的，而对于投影面积较大的粒子来说则是不够的。这两个问题为粒子渲染算法的优化留下了很大的空间。</p>
-<p>因此，我们提出了一种基于可见性剔除的渲染算法来可视化大规模粒子。一方面，充分利用粒子间的遮挡关系，去除大量遮挡粒子；另一方面，我们自适应地选择合适的分辨率来渲染粒子球体，从而进一步提高渲染速度。结果表明，该算法在保持绘制质量的同时，显著提高了绘制效率，能够满足大规模粒子数据交互可视化的需要。 </p>
-<h2 id="2-相关技术概述"><a href="#2-相关技术概述" class="headerlink" title="2. 相关技术概述"></a>2. 相关技术概述</h2><p>可见性剔除是一种有效的技术，通过快速确定场景中图形元素的可见性，然后排除那些明显不可见的图形元素，来降低发送到OpenGL的场景的复杂性。通常，可见性剔除可分为视锥剔除、背面剔除和遮挡剔除。前两种方法相对简单，因此最近人们更加关注遮挡剔除。在遮挡剔除中，必须考虑场景中的绘图元素之间的关系，然后更仔细地去除不可见元素。 </p>
-<p>根据遮挡计算的阶段，遮挡剔除算法可分为<strong>离线遮挡剔除</strong>和<strong>在线遮挡剔除</strong>。从遮挡关系的角度来看，也可以分为<strong>基于视图空间</strong>的遮挡剔除和<strong>基于视点</strong>的遮挡剔除。如果考虑参考系它们可以分为<strong>图像空间</strong>中的遮挡剔除和<strong>物理空间</strong>中的遮挡剔除。</p>
-<p><strong>离线遮挡剔除</strong>是一种预先计算遮挡可见性的方法，通常采用<strong>基于视图空间的遮挡判断</strong>。一个场景首先被划分为多个单元，然后在每个单元内，预先计算任意视点的潜在可见集（PVS），因此多个视点可以共享相同的PVS。这种方法的缺点是预处理时间长。此外，当视点跨单元边界切换时，可能会导致磁盘I/O急剧增加。然而，对于<strong>在线遮挡剔除</strong>，遮挡关系是在用户漫游时动态计算的。该方法采用<strong>基于视点的遮挡判断</strong>，即当视点发生变化时，需要重新计算视点对应的PVS。虽然该方法不需要预处理步骤，但实时计算可见性的成本很高。</p>
-<p>在上述方法中，场景元素的可见性是基于多边形计算的。如果我们首先将粒子球体离散为多边形，然后应用这些方法，场景元素将不可避免地急剧扩展。对于大规模粒子数据，这些方法将立即变得低效或不可行。为了解决这个问题，我们将根据球体的简单性直接计算球体之间的遮挡关系，从而有效地消除大量不可见球体，提高大规模粒子数据的渲染效率。</p>
-<p>由于几何渲染通常非常耗时，为了简化粒子数据的可视化，提出了替换渲染。在该方法中，粒子球体通过使用看起来像球体纹理的正方体近似渲染为球体。可以使用片段着色器在GPU上对视点替换正方体进行纹理处理，或者直接生成球体纹理并将其映射到所有替换正方体。该方法在著名的可视化软件VisIt中得到了应用。然而，实际的光照和材料特性很难集成到该方法中。</p>
-<p>我们的目标是开发一种在分布式内存并行计算机上运行的基于MPI的粒子渲染算法，以便有效地处理大规模时变科学数据。如今，许多科学模拟都在这样的计算机上运行（有时没有GPU），并输出大量数据集，这些数据集可能包含网格数据、粒子数据等。将数据从一台超级计算机移动到另一台超级计算机或一台PC是非常耗时的，甚至是不可能的。一些基于GPU的粒子渲染算法提供了更快的渲染速度，然而，由于对GPU的密切依赖，它们无法在没有GPU的并行计算机上运行，而且它们主要基于类似于替用渲染的简化渲染方法。</p>
-<h2 id="3-基于可见性剔除的粒子渲染算法"><a href="#3-基于可见性剔除的粒子渲染算法" class="headerlink" title="3. 基于可见性剔除的粒子渲染算法"></a>3. 基于可见性剔除的粒子渲染算法</h2><p>为了实现大规模粒子数据的高效绘制，提出了一种基于可见性剔除的粒子绘制算法。一方面，我们根据两种粒度的可见性过滤粒子数据。我们使用视锥大致过滤数据字段，抛弃掉落在视锥之外的数据块，这样用户就看不见了。渲染粒子时，我们判断一个粒子是否被其他粒子遮挡，然后排除被遮挡的粒子。另一方面，根据粒子在屏幕上的投影面积，我们将自适应地选择合适的网格分辨率，而不是固定的分辨率，来离散代表粒子的球体。</p>
-<h3 id="A-渲染算法"><a href="#A-渲染算法" class="headerlink" title="A.渲染算法"></a>A.渲染算法</h3><p>提出的粒子渲染算法的框架如图1所示。该算法的输入是大规模粒子模拟的结果数据。这些数据通常根据空间分区划分为多个补丁，并存储在并行文件系统中。</p>
-<p><img src="/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95.png" alt=""></p>
-<p>OpenGL使用投影变换将三维场景元素映射到二维屏幕，并且只有视锥中的场景元素可能会显示在屏幕上。因此，落在视锥体外部的粒子球体实际上被视锥体切断，因此用户看不到它们。因此，我们不需要阅读它们，也不需要处理它们。具体地说，基于合约机制，我们将视图参数传递给合约管理器，合约管理器随后构建视锥体和数据块的空间间隔树。通过视锥对区间树进行过滤，我们得到与视锥相交的数据块，并相应地将这些块读入内存，并将它们传送到渲染管道。</p>
-<p>在绘制大规模粒子时，我们通常使用静态负载平衡来避免大量数据在处理核心之间移动。详细地说，我们沿着<strong>空间填充曲线（the space filling curve ）</strong>遍历数据块，然后将它们均匀地分布到处理核心。通过这种方式，我们将连续的补丁一起分配给每个处理核心。因此，局部粒子聚集在每个核心上，突出了它们的遮挡关系，从而有助于以后的遮挡判断方法。</p>
-<p>对于处理核心上的每个粒子，我们首先确定它是否被之前绘制的粒子遮挡。所有被遮挡的粒子都将被忽略。在具体绘制粒子时，我们将实时计算其在屏幕上的<strong>投影宽度</strong>，由此确定其<strong>离散化分辨率</strong>。<strong>遮挡剔除算法</strong>和<strong>自适应离散化方法</strong>将在以下部分详细描述。最后，主进程收集所有处理核上的渲染结果，然后将其与Z缓冲区融合以生成最终图像。</p>
-<h3 id="B-基于遮挡剔除的粒子渲染"><a href="#B-基于遮挡剔除的粒子渲染" class="headerlink" title="B. 基于遮挡剔除的粒子渲染"></a>B. 基于遮挡剔除的粒子渲染</h3><p>球体通常由其中心和半径来描述，也就是说，球体的中心（简称CoS）自然是球体的参考点。当一个球体投影到屏幕上时，我们还将投影的CoS（简称PCoS）作为球体投影形状的参考点。在OpenGL的投影变换下，PCoS在屏幕上有一个坐标（x，y），在z缓冲区中有一个z值，在上下文中称为深度。深度越大，距离视点越远。如果CoS位于OpenGL<br>view平截头体的近（或远）平面上，则PCoS的z值将等于0（或1）。 </p>
-<p><img src="/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/9%E7%90%83%E9%81%AE%E6%8C%A1.png" alt=""></p>
-<p>让我们先考虑具有相同半径和深度的球体。根据投影变换的连续性，投影到屏幕上相邻位置的球体必须具有非常相似的投影形状。因为屏幕上的像素是离散的，球体的参考点将对应于具有整数坐标（i, j）的像素，这意味着它的坐标（x, y）属于[i, i+1)×[j, j+1）。我们称这个像素为参考像素。显然，（x, y）可以取区域[i, i+1)×[j, j+1)中的任何值，也就是说，两个具有相同参考像素的球在屏幕上不必重复考虑。因此，为了遮挡球体，我们必须考虑更多的球面。[j, j+1)在宽度和高度上都只有1，我们考虑屏幕上的参考像素周围的3×3区域，即我们使用九个球，其参考像素形成3×3区域，以遮住另一个参考像素为中心像素的球。如图2所示，九个绿色球的中心在3×3处投影到九个像素，红色球体的参考像素是中心像素。很明显，红色球体被九个绿色球体完全遮挡。 </p>
-<p>作为算法的理论基础，我们发现并证明了如下定理：</p>
+<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><ol>
+<li>collection  (单列) 往下的接口有List和Set</li>
+<li>Map (双列) </li>
+</ol>
+<p>List: 有序，可重复 ArrayList 和 LinkedList</p>
+<p>Set：不可重复 HashSet无序 LinkedHashSet有序 TreeSet总体排序</p>
 <blockquote>
-<p>九圆覆盖定理：在半径相等的情况下，如果九个圆的中心分别位于屏幕上3×3晶格的九个像素上，它们将覆盖中心位于中心像素上的任何圆。</p>
+<p>TreeSet<E> 可以重写compareTo()函数来处理排序，返回-1 0 1 代表小于等于大于；0则不加入</p>
 </blockquote>
-<p>如果在渲染过程中使用平行投影，则所有半径相等的球体都会投影到屏幕上的正等轴测圆上。在透视投影的情况下，球体的投影形状通常是近似圆形的二维凸区域，尤其是当视点远离OpenGL视锥体的近平面时。因此，对于离散化的屏幕，红色球体和九个绿色球体之间的遮挡关系在大多数情况下是成立的，异常引起的渲染错误通常可以忽略。</p>
-<p>现在，让我们看看不同半径和深度的球体。很明显，在以下三种情况下，当一个球体（半径r1和深度d1）的中心与视点共线时，该球体可以遮挡另一个球体（半径r2和深度d2）： </p>
-<ol>
-<li>r1 = r2 and d1 &lt; d2; </li>
-<li>r1 = r2 and d1 &lt; d2; </li>
-<li>r1 &gt; r2 and d1 &lt; d2. </li>
-</ol>
-<p>结合之前的遮挡关系，我们得到了九个球体的遮挡规则：参考像素形成3×3平方面积的九个球体可以遮挡一个参考像素为中心像素、距离视点较远且半径较小的球体。</p>
-<p>在遮挡剔除算法的设计中，我们生成了一个与屏幕相对应的辅助网格，其中一个单元或一个像素具有以下几个属性：占用标记T、最小深度D和邻域数N。如果某个绘制粒子的中心投影到像素上，T等于1。D表示中心投影到像素的粒子深度的最小值。对于一个像素，N表示其在3×3邻域中的占用标签为1的邻域数。很明显，N不大于8。在该算法中，T和N被初始化为0。</p>
-<p>在每个处理核心上，我们将首先根据粒子的深度对其进行排序，然后相对于视点对其进行处理。具体而言，我们根据以下算法递归处理下一个粒子（深度为d）：</p>
-<ol>
-<li>如果其参考像素的占用标签T等于0，则我们绘制粒子，然后将该像素的T设置为1，D设置为D，并将该像素的八个相邻像素中的Ni分别增加1</li>
-<li>在占用标签T等于1的情况下：如果N=8且D≤ d代表像素和Di≤ d对于像素的八个邻域，则粒子被遮挡，因此不需要绘制；否则，我们绘制粒子并将D更新为像素的min{d，D}。</li>
-</ol>
-<p>当粒子的半径是变化的，我们需要将半径作为每个像素的另一个属性。在上述算法中，半径的处理方式与深度的处理方式非常相似，因此我们省略了半径的处理细节，但有一个补充。如果粒子球体朝着视点移动到近平面，并同时缩小，则生成的球体和原始球体在屏幕上具有相同的投影区域。生成的球体的半径称为粒子的等效半径，该半径用作半径特性。</p>
-<h3 id="C-粒子球的自适应离散化"><a href="#C-粒子球的自适应离散化" class="headerlink" title="C. 粒子球的自适应离散化"></a>C. 粒子球的自适应离散化</h3><p>在粒子渲染中，由于深度和半径的不同，粒子球体在屏幕上的投影形状会变大或变小，甚至退化为一个像素。请注意，在绘制粒子球体之前，需要对其进行离散化。如果使用固定分辨率对所有球体进行离散化，那么对于离视点太近的球体来说，它似乎太粗糙，而对于离视点太远的球体来说，它是多余的，因为使用了太多的绘图图元。因此，我们采用不同的分辨率，根据粒子在屏幕上的投影面积自适应地离散粒子球。具体来说，我们的算法描述如下：</p>
-<ol>
-<li>根据OpenGL的投影变换计算粒子球在屏幕上的投影宽度；</li>
-<li>如果投影宽度只有一个像素，则计算球体与视线的前交点，将视线作为其法线，并相应地绘制该点；</li>
-<li>否则，根据投影宽度定义具有适当分辨率的离散球体，并将其发送到OpenGL绘图管道。</li>
-</ol>
-<p>具体而言，球体将离散为2k×k结构化网格，其中包含2k²四边形。网格的顶点计算如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x &#x3D; x0 + r * sin(ϕ) * cos(θ), </span><br><span class="line">y &#x3D; y0 + r * sin(ϕ) * sin(θ), </span><br><span class="line">z &#x3D; z0 + r * cos(ϕ), </span><br><span class="line"></span><br><span class="line">当θ &#x3D; iπ&#x2F;k, ϕ &#x3D; jπ&#x2F;k, i &#x3D; 0, 1, ..., 2k, j &#x3D; 0, 1, ..., k, r和（x0，y0，z0）分别是球体的半径和中心。显然，参数k决定了离散化球体的分辨率。</span><br></pre></td></tr></table></figure>
+<p>也可以Comparator</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="comment">//创建集合对象时就定义了规则</span></span><br><span class="line">	TreeSet&lt;Student&gt; ts = <span class="keyword">new</span> TreeSet&lt;Student&gt;(<span class="keyword">new</span> Comparator&lt;Student&gt;()&#123;</span><br><span class="line">		<span class="meta">@override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student s1, Student s2)</span></span>&#123;</span><br><span class="line">			<span class="keyword">int</span> num = s1.getAge-s2.getAge;</span><br><span class="line">			<span class="keyword">return</span> num;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<p><img src="/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E4%B8%8B%E7%9A%84%E7%9B%B8%E4%BC%BC%E5%85%B3%E7%B3%BB.png" alt=""></p>
-<p>让我们考虑半径R的球面的投影宽度。它的中心投影具有坐标（x，y）和深度d。可以将屏幕上单位长度的线段转换为原始物理空间中的线段，并据此找出其长度的映射关系。例如，可以将OpenGL函数gluUnProject()应用于图像空间中的两点（x-0.5，y，d）和（x+0.5，y，d），然后计算得到的两点在物理空间中的距离，用L表示。然后，我们知道球体的投影宽度，即W=2r/L。一旦已知投影宽度W，我们可以确定分辨率参数k，例如，经验公式是k = max{(W/4)向下取整, 3}。</p>
-<p>无需精确计算投影宽度。事实上，当它（或它的中心）沿着平行于屏幕的平面移动时，使用相同的分辨率来绘制一个球体，也就是说，我们可以只考虑r和d，忽略所有其他因素。因此，我们有了一种快速估算方法。用（cx，cy）表示屏幕的中心。让我们考虑图像空间中的六个点（CX-0.5，Cy，0），（Cx+0.5，Cy，0），（CX-0.5，Cy，1），（Cx+0.5，Cy，1），（CX-0.5，Cy，D）和（Cx+0.5，Cy，D），它们在物理空间中的对应点分别由A0、B0、A1、B1、AD和BD表示，如图3所示。使用函数gluUnProject()，可以计算A0、B0、A1和B1。然后获得直线段A0B0和A1B1的长度，分别用L0和L1表示。视点用V表示，然后VA0AdA1和VB0BdB1只是两条视线，三条线段A0B0、AdBd和A1B1是平行的。因此，根据相似定理，我们可以直接得到AdBd的长度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ld &#x3D; [(zFar-zd)*L0+(zd-zNear)*L1]&#x2F;(zFar-zNear)</span><br></pre></td></tr></table></figure>
-
-<p>其中zNear、zFar和zd分别是从视点到近平面、远平面和深度d平面的距离，根据OpenGL投影关系，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zd &#x3D; 2*zNear*zFar&#x2F;[zFar+zNear–(2*d-1)*(zFar-zNear)]</span><br></pre></td></tr></table></figure>
-
-<p>最后，我们得到了投影宽度W(r, d)=2r/Ld。通过这种方式，可以快速计算所有粒子的W(r, d)，因为zNear、zFar、L0和L1都是常数，调用函数glunProject()的时间从2n大幅减少到4，其中n是粒子数。</p>
-<h2 id="4-实验"><a href="#4-实验" class="headerlink" title="4.实验"></a>4.实验</h2><p><img src="/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E5%AE%9E%E9%AA%8C%E7%B2%92%E5%AD%90.png" alt=""></p>
-<p>测试数据是实际分子动力学模拟的结果数据，如图4所示。该模拟使用2.56亿个粒子，在32000个处理核上运行。揭示了含纳米孔金属材料的冲击结构和动态响应机理。经过过滤后，实际输出3800万个粒子。在测试中，我们分别在4、8、16和24个处理核上运行了该算法，实验结果如图5所示。从图5可以看出，该算法充分利用了大量粒子之间的遮挡关系，从而实现了显著的渲染加速。与传统的暴力球体绘制方法相比，该算法的加速比可达29~53。在24个处理内核上，3800万个粒子的渲染时间从269秒大幅减少到9秒。</p>
-<p>我们对24个处理核做了进一步统计。我们计算每个核心上的粒子总数，以及由于遮挡而消除的粒子数，然后计算它们之间的比率。因此，我们绘制了每个核心上粒子的消除率图。见图6。从图中可以看出，每个芯上的颗粒消除率约为78%~92%。我们同时计算了粒子的总消除率，等于89%。显然，由于遮挡，大量粒子被移除，因此不会进入OpenGL绘图管道，因此减少了系统负载，提高了渲染效率</p>
-<p><img src="/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E5%AE%9E%E9%AA%8C%E6%95%88%E6%9E%9C%E5%9B%BE.png" alt=""></p>
-<p>在实验中，我们还测试了该算法在视点变化时的稳定性。我们以交互方式选择8个代表性视点，并在并行渲染中记录响应时间。这里，以24个处理核为例。8个视点的渲染时间如图7所示。很明显，所有渲染时间都在10秒左右，这表明了该算法在不同视点下的渲染稳定性。请注意，由于静态负载平衡，数据不会在核心之间移动，因此这种稳定性也意味着在某种意义上每个核心上的九个球体的局部稳定性。</p>
-<p><img src="/assets/blogImg/%E5%9F%BA%E4%BA%8E%E5%8F%AF%E8%A7%81%E6%80%A7%E5%89%94%E9%99%A4%E7%9A%84%E7%B2%92%E5%AD%90%E6%B8%B2%E6%9F%93%E7%AE%97%E6%B3%95/%E4%B8%8D%E5%90%8C%E8%A7%86%E7%82%B9.png" alt=""></p>
-<h2 id="5-结论"><a href="#5-结论" class="headerlink" title="5. 结论"></a>5. 结论</h2><p>针对大规模粒子几何绘制时间长、效率低的问题，提出了一种基于可见性剔除的并行自适应粒子绘制算法。在该算法中，我们去除不可见或被遮挡的粒子，然后用自适应分辨率绘制粒子球；因此，我们可以显著减少OpenGL绘图原语，从而提高大规模粒子的几何绘制速度。实验表明，与传统方法相比，该算法的渲染加速比在29~53之间。在24个处理核心上渲染3800万个实际粒子时，由于遮挡剔除，约89%的粒子被消除，渲染时间从269秒大幅减少到9秒。</p>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>  泛型:是JDK5中引入的特性，它提供了编译时类型安全检测机制，该机制允许在编译时检测到非法的类型它的本质是参数化类型，也就是说所操作的数据类型被指定为-个参数</p>
+<p>一提到参数，最熟悉的就是定义方法时有形参，然后调用此方法时传递实参。那么参数化类型怎么理解呢?顾名思义，就是将类型由原来的具体的类型参数化，然后在使用/调用时传入具体的类型</p>
+<p>这种参数类型可以用在类、方法和接口中， 分别被称为泛型类、泛型方法、 泛型接口  </p>
 
       
 
@@ -246,6 +190,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -296,7 +251,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2022/03/11/Visibility-culling-based-geometric-rendering-of-large-scale-particle-data/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2022/03/28/Java%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -310,18 +265,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/03/17/GFS/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          GFS
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/03/06/hadoop%E4%B9%8BYarn/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hadoop之Yarn</div>
+    <a href="/2022/03/27/RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RabbitMQ的高级特性</div>
       <i class="icon-circle-right"></i>
     </a>
   
