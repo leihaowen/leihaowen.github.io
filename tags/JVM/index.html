@@ -6,27 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>hadoop | 雷浩文的博客</title>
+  <title>Tag: JVM | 雷浩文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hadoop学习笔记之HDFS   1. HDFSHadoop 分布式系统框架中，首要的基础功能就是文件系统，在 Hadoop 中使用 FileSystem 这个抽象类来表示我们的文件系统，这个抽象类下面有很多子实现类，究竟使用哪一种，需要看我们具体的实现类，在我们实际工作中，用到的最多的就是HDFS(分布式文件系统)以及LocalFileSystem(本地文件系统)了。 在现代企业环境中，单机容">
-<meta property="og:type" content="article">
-<meta property="og:title" content="hadoop">
-<meta property="og:url" content="http://yoursite.com/2022/03/04/hadoop/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="雷浩文的博客">
+<meta property="og:url" content="http://yoursite.com/tags/JVM/index.html">
 <meta property="og:site_name" content="雷浩文的博客">
-<meta property="og:description" content="Hadoop学习笔记之HDFS   1. HDFSHadoop 分布式系统框架中，首要的基础功能就是文件系统，在 Hadoop 中使用 FileSystem 这个抽象类来表示我们的文件系统，这个抽象类下面有很多子实现类，究竟使用哪一种，需要看我们具体的实现类，在我们实际工作中，用到的最多的就是HDFS(分布式文件系统)以及LocalFileSystem(本地文件系统)了。 在现代企业环境中，单机容">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/hadoop/hdfs%E6%9E%B6%E6%9E%84.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/hadoop/HDFS%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E8%BF%87%E7%A8%8B.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/hadoop/%E6%9C%BA%E6%9E%B6%E6%84%9F%E7%9F%A51.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/hadoop/%E6%9C%BA%E6%9E%B6%E6%84%9F%E7%9F%A52.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/hadoop/HDFS%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E8%BF%87%E7%A8%8B.jpg">
-<meta property="og:image" content="http://yoursite.com/assets/blogImg/hadoop/secondarynameNode%E7%9A%84%E8%BE%85%E5%8A%A9%E7%AE%A1%E7%90%86.jpg">
-<meta property="article:published_time" content="2022-03-04T08:20:36.000Z">
-<meta property="article:modified_time" content="2022-03-05T09:09:44.463Z">
 <meta property="article:author" content="雷浩文">
-<meta property="article:tag" content="hadoop">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/hadoop/hdfs%E6%9E%B6%E6%9E%84.jpg">
   
     <link rel="alternative" href="/atom.xml" title="雷浩文的博客" type="application/atom+xml">
   
@@ -146,746 +134,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hadoop" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      hadoop
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2022/03/30/JVM%E7%9B%B8%E5%85%B3/" class="archive-article-date">
+  	<time datetime="2022-03-30T03:51:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-30</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2022/03/30/JVM%E7%9B%B8%E5%85%B3/">JVM相关</a>
     </h1>
   
 
-        
-        <a href="/2022/03/04/hadoop/" class="archive-article-date">
-  	<time datetime="2022-03-04T08:20:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1>Hadoop学习笔记之HDFS</h1>
-
-
-<h2 id="1-HDFS"><a href="#1-HDFS" class="headerlink" title="1. HDFS"></a>1. HDFS</h2><p>Hadoop 分布式系统框架中，首要的基础功能就是文件系统，在 Hadoop 中使用 FileSystem 这个抽象类来表示我们的文件系统，这个抽象类下面有很多子实现类，究竟使用哪一种，需要看我们具体的实现类，在我们实际工作中，用到的最多的就是HDFS(分布式文件系统)以及LocalFileSystem(本地文件系统)了。</p>
-<p>在现代企业环境中，单机容量无法存储庞大的数据，常常需要跨机存储。统一管理分布在集群上的文件系统称为<strong>分布式文件系统</strong>。</p>
-<p>HDFS（Hadoop  Distributed  File  System）是 Hadoop 项目的一个子项目。是 Hadoop 的核心组件之一，  Hadoop 非常适于存储大型数据 (比如 TB 和 PB)，其就是使用 HDFS 作为存储系统. HDFS 使用多台计算机存储文件，并且提供统一的访问接口，像是访问一个普通文件系统一样使用分布式文件系统。</p>
-<a id="more"></a>
-
-
-
-<h2 id="2-HDFS架构"><a href="#2-HDFS架构" class="headerlink" title="2. HDFS架构"></a>2. HDFS架构</h2><p><img src="/assets/blogImg/hadoop/hdfs%E6%9E%B6%E6%9E%84.jpg" alt=""></p>
-<p>HDFS是一个主/从（Mater/Slave）体系结构，由三部分组成：<strong>NameNode</strong> 和 <strong>DataNode</strong> 以及 <strong>SecondaryNamenode</strong>：</p>
-<ul>
-<li><p>NameNode 负责管理整个<strong>文件系统的元数据</strong>，以及每一个路径（文件）所对应的数据块信息。</p>
-</li>
-<li><p>DataNode 负责管理用户的<strong>文件数据块</strong>，每一个数据块都可以在多个 DataNode 上存储多个副本，默认为3个。</p>
-</li>
-<li><p>Secondary NameNode 用来监控 HDFS 状态的辅助后台程序，每隔一段时间获取 HDFS 元数据的快照。最主要作用是<strong>辅助 NameNode 管理元数据信息</strong>。</p>
-</li>
-</ul>
-<h2 id="3-HDFD特性"><a href="#3-HDFD特性" class="headerlink" title="3. HDFD特性"></a>3. HDFD特性</h2><p>首先，它是一个文件系统，用于存储文件，通过统一的命名空间目录树来定位文件；</p>
-<p>其次，它是分布式的，由很多服务器联合起来实现其功能，集群中的服务器有各自的角色。</p>
-<p><strong>1. master/slave 架构</strong>（主从架构）</p>
-<p>HDFS 采用 master/slave 架构。一般一个 HDFS 集群是有一个 Namenode 和一定数目的 Datanode 组成。Namenode 是 HDFS 集群主节点，Datanode 是 HDFS 集群从节点，两种角色各司其职，共同协调完成分布式的文件存储服务。</p>
-<p><strong>2. 分块存储</strong></p>
-<p>HDFS 中的文件在物理上是分块存储（block）的，块的大小可以通过配置参数来规定，默认大小在 hadoop2.x 版本中是 128M。</p>
-<p><strong>3. 名字空间（NameSpace）</strong></p>
-<p>HDFS 支持传统的层次型文件组织结构。用户或者应用程序可以创建目录，然后将文件保存在这些目录里。文件系统名字空间的层次结构和大多数现有的文件系统类似：用户可以创建、删除、移动或重命名文件。<br>Namenode 负责维护文件系统的名字空间，任何对文件系统名字空间或属性的修改都将被 Namenode 记录下来。<br>HDFS 会给客户端提供一个统一的抽象目录树，客户端通过路径来访问文件，形如：hdfs://namenode:port/dir-a/dir-b/dir-c/file.data。</p>
-<p><strong>4. NameNode 元数据管理</strong></p>
-<p>我们把目录结构及文件分块位置信息叫做元数据。NameNode 负责维护整个 HDFS 文件系统的目录树结构，以及每一个文件所对应的 block 块信息（block 的 id，及所在的 DataNode 服务器）。</p>
-<p><strong>5. DataNode 数据存储</strong></p>
-<p>文件的各个 block 的具体存储管理由 DataNode 节点承担。每一个 block 都可以在多个 DataNode 上。DataNode 需要定时向 NameNode 汇报自己持有的 block 信息。存储多个副本（副本数量也可以通过参数设置 dfs.replication，默认是 3）</p>
-<p><strong>6. 副本机制</strong></p>
-<p>为了容错，文件的所有 block 都会有副本。每个文件的 block 大小和副本系数都是可配置的。应用程序可以指定某个文件的副本数目。副本系数可以在文件创建的时候指定，也可以在之后改变。</p>
-<p><strong>7. 一次写入，多次读出</strong></p>
-<p>HDFS 是设计成适应一次写入，多次读出的场景，且不支持文件的修改。正因为如此，HDFS 适合用来做大数据分析的底层存储服务，并不适合用来做网盘等应用，因为修改不方便，延迟大，网络开销大，成本太高。</p>
-<h2 id="4-HDFS的命令"><a href="#4-HDFS的命令" class="headerlink" title="4. HDFS的命令"></a>4. HDFS的命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">hdfs dfs -help </span><br><span class="line">#help</span><br><span class="line"></span><br><span class="line">hdfs dfs -ls  URI </span><br><span class="line">#ls展示文件列表</span><br><span class="line"></span><br><span class="line">hdfs  dfs -lsr URI  </span><br><span class="line">#在整个目录下递归执行ls, 与UNIX中的ls-R类似</span><br><span class="line"></span><br><span class="line">hdfs  dfs  -mkdir [-p] &lt;paths&gt;</span><br><span class="line">#以&lt;paths&gt;中的URI作为参数，创建目录。使用-p参数可以递归创建目录</span><br><span class="line"></span><br><span class="line">hdfs dfs -put &lt;localsrc &gt;  ... &lt;dst&gt;</span><br><span class="line">#将单个的源文件src或者多个源文件srcs从本地文件系统拷贝到目标文件系统中（&lt;dst&gt;对应的路径）。也可以从标准输入中读取输入，写入目标文件系统中</span><br><span class="line">#例如 hdfs dfs -put  &#x2F;rooot&#x2F;bigdata.txt  &#x2F;dir1</span><br><span class="line"></span><br><span class="line">hdfs  dfs -moveFromLocal  &lt;localsrc&gt;   &lt;dst&gt;</span><br><span class="line">#和put命令类似，但是源文件localsrc拷贝之后自身被删除</span><br><span class="line"></span><br><span class="line">hdfs dfs -copyFromLocal &lt;localsrc&gt; ... &lt;dst&gt;</span><br><span class="line">#从本地文件系统中拷贝文件到hdfs路径去</span><br><span class="line"></span><br><span class="line">hdfs dfs -appendToFile &lt;localsrc&gt; ... &lt;dst&gt;</span><br><span class="line">#追加一个或者多个文件到hdfs指定文件中.也可以从命令行读取输入.</span><br><span class="line">#例如 hdfs dfs -appendToFile  a.xml b.xml  &#x2F;big.xml</span><br><span class="line"></span><br><span class="line">hdfs dfs  -get [-ignorecrc ]  [-crc]  &lt;src&gt; &lt;localdst&gt;</span><br><span class="line">#将文件拷贝到本地文件系统。CRC 校验失败的文件通过-ignorecrc选项拷贝。 文件和CRC校验可以通过-CRC选项拷贝</span><br><span class="line">#作用 hdfs dfs  -get   &#x2F;bigdata.txt  &#x2F;export&#x2F;servers</span><br><span class="line"></span><br><span class="line">hdfs dfs -getmerge &lt;src&gt; &lt;localdst&gt;</span><br><span class="line">#合并下载多个文件，比如hdfs的目录 &#x2F;aaa&#x2F;下有多个文件:log.1, log.2,log.3,...</span><br><span class="line"></span><br><span class="line">hdfs dfs -copyToLocal &lt;src&gt; ... &lt;localdst&gt;</span><br><span class="line">#从hdfs拷贝到本地</span><br><span class="line"></span><br><span class="line">hdfs  dfs -mv URI   &lt;dest&gt;</span><br><span class="line">#将hdfs上的文件从原路径移动到目标路径（移动之后文件删除），该命令不能跨文件系统</span><br><span class="line">#例如 hdfs  dfs  -mv  &#x2F;dir1&#x2F;bigdata.txt   &#x2F;dir2</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -rm [-r] 【-skipTrash】 URI 【URI 。。。】</span><br><span class="line"># 删除参数指定的文件，参数可以有多个。此命令只删除文件和非空目录。</span><br><span class="line"># 如果指定-skipTrash选项，那么在回收站可用的情况下，该选项将跳过回收站而直接删除文件；</span><br><span class="line"># 否则，在回收站可用时，在HDFS Shell 中执行此命令，会将文件暂时放到回收站中。</span><br><span class="line">#例如 hdfs  dfs  -rm  -r  &#x2F;dir1</span><br><span class="line"></span><br><span class="line">hdfs  dfs  -cp URI [URI ...] &lt;dest&gt;</span><br><span class="line"># 将文件拷贝到目标路径中。如果&lt;dest&gt;为目录的话，可以将多个文件拷贝到该目录下。</span><br><span class="line"># -f   选项将覆盖目标，如果它已经存在。</span><br><span class="line"># -p   选项将保留文件属性（时间戳、所有权、许可、ACL、XAttr）。</span><br><span class="line">#例如 hdfs dfs -cp &#x2F;dir1&#x2F;a.txt  &#x2F;dir2&#x2F;bigdata.txt</span><br><span class="line"></span><br><span class="line">hdfs dfs  -cat  URI [uri  ...]</span><br><span class="line"># 将参数所指示的文件内容输出到stdout</span><br><span class="line">#例如 hdfs dfs  -cat &#x2F;bigdata.txt</span><br><span class="line"></span><br><span class="line">hdfs dfs -text path</span><br><span class="line"># 以字符形式打印一个文件的内容</span><br><span class="line"></span><br><span class="line">hdfs  dfs  -chmod  [-R]  URI[URI  ...]</span><br><span class="line"># 改变文件权限。如果使用  -R 选项，则对整个目录有效递归执行。使用这一命令的用户必须是文件的所属用户，或者超级用户。</span><br><span class="line"># 例如 hdfs dfs -chmod -R 777 &#x2F;bigdata.txt</span><br><span class="line"></span><br><span class="line">hdfs dfs  -df  -h  path</span><br><span class="line"># 统计文件系统的可用空间信息</span><br><span class="line"></span><br><span class="line">hdfs dfs -du -s -h path</span><br><span class="line"># 统计文件夹的大小信息</span><br><span class="line"></span><br><span class="line">hdfs dfs -count path</span><br><span class="line"># 统计一个指定目录下的文件节点数量</span><br><span class="line"></span><br><span class="line">hdfs dfs -setrep num filePath</span><br><span class="line"># 设置hdfs中文件的副本数量</span><br><span class="line"># 即使设置的超过了datanode的数量,副本的数量也最多只能和datanode的数量是一致的</span><br><span class="line"></span><br><span class="line">hdfs dfs  -expunge</span><br><span class="line"># 清空hdfs垃圾桶</span><br><span class="line"># 危险命令，谨慎使用</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-HDFS的高级使用命令"><a href="#5-HDFS的高级使用命令" class="headerlink" title="5. HDFS的高级使用命令"></a>5. HDFS的高级使用命令</h2><h3 id="1-HDFS文件限额配置"><a href="#1-HDFS文件限额配置" class="headerlink" title="1. HDFS文件限额配置"></a>1. HDFS文件限额配置</h3><p>在多人共用HDFS的环境下，配置设置非常重要。特别是在 Hadoop 处理大量资料的环境，如果没有配额管理，很容易把所有的空间用完造成别人无法存取。<strong>HDFS 的配额设定是针对目录而不是针对账号，可以让每个账号仅操作某一个目录，然后对目录设置配置</strong>。</p>
-<p>HDFS 文件的限额配置允许我们以文件个数，或者文件大小来限制我们在某个目录下上传的文件数量或者文件内容总量，以便达到我们类似百度网盘网盘等限制每个用户允许上传的最大的文件的量。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -count -q -h /user/root/dir1  #查看配额信息</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-1-数量限额"><a href="#1-1-数量限额" class="headerlink" title="1.1 数量限额"></a>1.1 数量限额</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs  -mkdir -p /user/root/dir    </span><br><span class="line">#创建hdfs文件夹</span><br><span class="line"></span><br><span class="line">hdfs dfsadmin -setQuota <span class="number">2</span>  dir      </span><br><span class="line"># 给该文件夹下面设置最多上传两个文件，发现只能上传一个文件</span><br><span class="line"></span><br><span class="line">hdfs dfsadmin -clrQuota /user/root/dir  </span><br><span class="line"># 清除文件数量限制</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-2-空间大小限额"><a href="#1-2-空间大小限额" class="headerlink" title="1.2 空间大小限额"></a>1.2 空间大小限额</h4><p>在设置空间配额时，设置的空间至少是 block_size * 3 大小</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -setSpaceQuota 4k /user/root/dir   # 限制空间大小4KB</span><br><span class="line">hdfs dfs -put  /root/a.txt  /user/root/dir</span><br></pre></td></tr></table></figure>
-
-<p>生成任意大小文件的命令:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=1.txt  bs=1M count=2     #生成2M的文件</span><br></pre></td></tr></table></figure>
-
-
-
-<p>清除空间配额限制</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -clrSpaceQuota /user/root/dir</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2-HDFS-的安全模式"><a href="#2-HDFS-的安全模式" class="headerlink" title="2. HDFS 的安全模式"></a>2. HDFS 的安全模式</h3><p><strong>安全模式是hadoop的一种保护机制，用于保证集群中的数据块的安全性</strong>。当集群启动的时候，会首先进入安全模式。当系统处于安全模式时会检查数据块的完整性。</p>
-<p>假设我们设置的副本数（即参数dfs.replication）是3，那么在datanode上就应该有3个副本存在，假设只存在2个副本，那么比例就是2/3=0.666。hdfs默认的副本率0.999。我们的副本率0.666明显小于0.999，因此系统会自动的复制副本到其他dataNode，使得副本率不小于0.999。如果系统中有5个副本，超过我们设定的3个副本，那么系统也会删除多于的2个副本。</p>
-<p><strong>在安全模式状态下，文件系统只接受读数据请求，而不接受删除、修改等变更请求</strong>。在，当整个系统达到安全标准时，HDFS自动离开安全模式。30s安全模式操作命令</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hdfs  dfsadmin  -safemode  get #查看安全模式状态</span><br><span class="line">hdfs  dfsadmin  -safemode  enter #进入安全模式</span><br><span class="line">hdfs  dfsadmin  -safemode  leave #离开安全模式</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="6-HDFS-的-block-块和副本机制"><a href="#6-HDFS-的-block-块和副本机制" class="headerlink" title="6. HDFS 的 block 块和副本机制"></a>6. HDFS 的 block 块和副本机制</h2><p>HDFS 将所有的文件全部抽象成为 block 块来进行存储，不管文件大小，全部一视同仁都是以 block 块的统一大小和形式进行存储，方便我们的分布式文件系统对文件的管理。</p>
-<p>所有的文件都是以 block 块的方式存放在 hdfs 文件系统当中，在 Hadoop 1 版本当中，文件的 block 块默认大小是 64M，Hadoop 2 版本当中，文件的 block 块大小默认是128M，block块的大小可以通过 hdfs-site.xml 当中的配置文件进行指定。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;dfs.block.size&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;块大小 以字节为单位&lt;/value&gt; //只写数值就可以</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="1-抽象为block块的好处"><a href="#1-抽象为block块的好处" class="headerlink" title="1. 抽象为block块的好处"></a>1. 抽象为block块的好处</h3><ul>
-<li><p>一个文件有可能大于集群中任意一个磁盘 10T*3/128 = xxx块 2T，2T，2T 文件方式存—–&gt;多个block块，这些block块属于一个文件</p>
-</li>
-<li><p>使用块抽象而不是文件可以简化存储子系统</p>
-</li>
-<li><p>块非常适合用于数据备份进而提供数据容错能力和可用性</p>
-</li>
-</ul>
-<h3 id="2-块缓存"><a href="#2-块缓存" class="headerlink" title="2. 块缓存"></a>2. 块缓存</h3><p><strong>通常 DataNode 从磁盘中读取块，但对于访问频繁的文件，其对应的块可能被显示的缓存在 DataNode 的内存中，以堆外块缓存的形式存在</strong>。默认情况下，一个块仅缓存在一个DataNode的内存中，当然可以针对每个文件配置DataNode的数量。<strong>作业调度器通过在缓存块的DataNode上运行任务，可以利用块缓存的优势提高读操作的性能</strong>。</p>
-<p>例如：连接（join）操作中使用的一个小的查询表就是块缓存的一个很好的候选。用户或应用通过在缓存池中增加一个cache directive来告诉namenode需要缓存哪些文件及存多久。缓存池（cache pool）是一个拥有管理缓存权限和资源使用的管理性分组。</p>
-<p>例如:</p>
-<p>一个文件 130M，会被切分成2个block块，保存在两个block块里面，实际占用磁盘130M空间，而不是占用256M的磁盘空间</p>
-<h3 id="3-HDFS的文件权限验证"><a href="#3-HDFS的文件权限验证" class="headerlink" title="3. HDFS的文件权限验证"></a>3. HDFS的文件权限验证</h3><p>hdfs的文件权限机制与linux系统的文件权限机制类似</p>
-<p>r:read   w:write  x:execute</p>
-<p>权限x对于文件表示忽略，对于文件夹表示是否有权限访问其内容</p>
-<p>如果linux系统用户zhangsan使用hadoop命令创建一个文件，那么这个文件在HDFS当中的owner就是zhangsan</p>
-<p>HDFS文件权限的目的，防止好人做错事，而不是阻止坏人做坏事。HDFS相信你告诉我你是谁，你就是谁。</p>
-<h3 id="4-hdfs的副本因子"><a href="#4-hdfs的副本因子" class="headerlink" title="4. hdfs的副本因子"></a>4. hdfs的副本因子</h3><p>为了保证block块的安全性，也就是数据的安全性，在hadoop2当中，文件默认保存三个副本，我们可以更改副本数以提高数据的安全性</p>
-<p>在hdfs-site.xml当中修改以下配置属性，即可更改文件的副本数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">     &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;3&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="7-HDFS-文件写入过程★"><a href="#7-HDFS-文件写入过程★" class="headerlink" title="7. HDFS 文件写入过程★"></a>7. HDFS 文件写入过程★</h2><p><img src="/assets/blogImg/hadoop/HDFS%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E8%BF%87%E7%A8%8B.jpg" alt="HDFS文件写入过程"></p>
-<ol>
-<li>Client 发起文件上传请求，通过 RPC 与 NameNode 建立通讯, NameNode 检查目标文件是否已存在，父目录是否存在，返回是否可以上传；</li>
-<li>Client 请求第一个 block 该传输到哪些 DataNode 服务器上；</li>
-<li>NameNode 根据配置文件中指定的备份数量及机架感知原理进行文件分配, 返回可用的 DataNode 的地址如：A, B, C；（Hadoop 在设计时考虑到数据的安全与高效， 数据文件默认在 HDFS 上存放三份， 存储策略为本地一份，同机架内其它某一节点上一份，不同机架的某一节点上一份。）</li>
-<li>Client 请求 3 台 DataNode 中的一台 A 上传数据（本质上是一个 RPC 调用，建立 pipeline ），A 收到请求会继续调用 B，然后 B 调用 C，将整个 pipeline 建立完成， 后逐级返回 client；</li>
-<li><strong>Client 开始往 A 上传第一个 block（先从磁盘读取数据放到一个本地内存缓存），以 packet 为单位（默认64K），A 收到一个 packet 就会传给 B，B 传给 C</strong>。A 每传一个 packet 会放入一个应答队列等待应答；</li>
-<li>数据被分割成一个个 packet 数据包在 pipeline 上依次传输，在 pipeline 反方向上， 逐个发送 ack（命令正确应答），最终由 pipeline 中第一个 DataNode 节点 A 将 pipelineack 发送给 Client；</li>
-<li>当一个 block 传输完成之后，Client 再次请求 NameNode 上传第二个 block，重复步骤 2；</li>
-</ol>
-<h3 id="1-网络拓扑概念"><a href="#1-网络拓扑概念" class="headerlink" title="1. 网络拓扑概念"></a>1. 网络拓扑概念</h3><p>在本地网络中，两个节点被称为“彼此近邻”是什么意思？在海量数据处理中，其主要限制因素是节点之间数据的传输速率——带宽很稀缺。这里的想法是将两个节点间的带宽作为距离的衡量标准。</p>
-<p>节点距离：两个节点到达最近的共同祖先的距离总和。</p>
-<p>例如，假设有数据中心d1机架r1中的节点n1。该节点可以表示为/d1/r1/n1。利用这种标记，这里给出四种距离描述。</p>
-<p>Distance(/d1/r1/n1, /d1/r1/n1)=0（同一节点上的进程）</p>
-<p>Distance(/d1/r1/n1, /d1/r1/n3)=2（同一机架上的不同节点）</p>
-<p>Distance(/d1/r1/n1, /d1/r3/n3)=4（同一数据中心不同机架上的节点）</p>
-<p>Distance(/d1/r1/n1, /d2/r4/n3)=6（不同数据中心的节点）</p>
-<h3 id="2-机架感知（副本节点选择）"><a href="#2-机架感知（副本节点选择）" class="headerlink" title="2. 机架感知（副本节点选择）"></a>2. 机架感知（副本节点选择）</h3><ol>
-<li>低版本Hadoop副本节点选择</li>
-</ol>
-<p>第一个副本在client所处的节点上。如果客户端在集群外，随机选一个。</p>
-<p>第二个副本和第一个副本位于不相同机架的随机节点上。</p>
-<p>第三个副本和第二个副本位于相同机架，节点随机。</p>
-<p><img src="/assets/blogImg/hadoop/%E6%9C%BA%E6%9E%B6%E6%84%9F%E7%9F%A51.jpg" alt=""></p>
-<ol start="2">
-<li>Hadoop2.7.2 副本节点选择</li>
-</ol>
-<p>第一个副本在client所处的节点上。如果客户端在集群外，随机选一个。</p>
-<p>第二个副本和第一个副本位于相同机架，随机节点。</p>
-<p>第三个副本位于不同机架，随机节点。</p>
-<p><img src="/assets/blogImg/hadoop/%E6%9C%BA%E6%9E%B6%E6%84%9F%E7%9F%A52.jpg" alt=""></p>
-<h2 id="8-HDFS-文件读取过程★"><a href="#8-HDFS-文件读取过程★" class="headerlink" title="8.HDFS 文件读取过程★"></a>8.HDFS 文件读取过程★</h2><p><img src="/assets/blogImg/hadoop/HDFS%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E8%BF%87%E7%A8%8B.jpg" alt=""></p>
-<ol>
-<li>Client向NameNode发起RPC请求，来确定请求文件block所在的位置；</li>
-<li>NameNode会视情况返回文件的部分或者全部block列表，对于每个block，NameNode 都会返回含有该 block 副本的 DataNode 地址； 这些返回的 DN 地址，会按照集群拓扑结构得出 DataNode 与客户端的距离，然后进行排序，排序两个规则：网络拓扑结构中距离 Client 近的排靠前；心跳机制中超时汇报的 DN 状态为 STALE，这样的排靠后；</li>
-<li>Client 选取排序靠前的 DataNode 来读取 block，如果客户端本身就是DataNode，那么将从本地直接获取数据(短路读取特性)；</li>
-<li>底层上本质是建立 Socket Stream（FSDataInputStream），重复的调用父类 DataInputStream 的 read 方法，直到这个块上的数据读取完毕；</li>
-<li>当读完列表的 block 后，若文件读取还没有结束，客户端会继续向NameNode 获取下一批的 block 列表；</li>
-<li>读取完一个 block 都会进行 checksum 验证，如果读取 DataNode 时出现错误，客户端会通知 NameNode，然后再从下一个拥有该 block 副本的DataNode 继续读。</li>
-<li><strong>read 方法是并行的读取 block 信息，不是一块一块的读取</strong>；NameNode 只是返回Client请求包含块的DataNode地址，并不是返回请求块的数据；</li>
-<li>最终读取来所有的 block 会合并成一个完整的最终文件。</li>
-</ol>
-<blockquote>
-<p>从 HDFS 文件读写过程中，可以看出，HDFS 文件写入时是串行写入的，数据包先发送给节点A，然后节点A发送给B，B在给C；而HDFS文件读取是并行的， 客户端 Client 直接并行读取block所在的节点。</p>
-</blockquote>
-<h2 id="9-NameNode-工作机制以及元数据管理★"><a href="#9-NameNode-工作机制以及元数据管理★" class="headerlink" title="9. NameNode 工作机制以及元数据管理★"></a>9. NameNode 工作机制以及元数据管理★</h2><p>![](/assets/blogImg/hadoop/NameNode 工作机制.jpg)</p>
-<h3 id="1-namenode-与-datanode-启动"><a href="#1-namenode-与-datanode-启动" class="headerlink" title="1. namenode 与 datanode 启动"></a>1. namenode 与 datanode 启动</h3><ul>
-<li>namenode工作机制**</li>
-</ul>
-<ol>
-<li>第一次启动namenode格式化后，创建fsimage和edits文件。如果不是第一次启动，直接加载编辑日志和镜像文件到内存。</li>
-<li>客户端对元数据进行增删改的请求。</li>
-<li>namenode记录操作日志，更新滚动日志。</li>
-<li>namenode在内存中对数据进行增删改查。</li>
-</ol>
-<ul>
-<li><strong>secondary namenode</strong></li>
-</ul>
-<ol>
-<li>secondary namenode询问 namenode 是否需要 checkpoint。直接带回 namenode 是否检查结果。</li>
-<li>secondary namenode 请求执行 checkpoint。</li>
-<li>namenode 滚动正在写的edits日志。</li>
-<li>将滚动前的编辑日志和镜像文件拷贝到 secondary namenode。</li>
-<li>secondary namenode 加载编辑日志和镜像文件到内存，并合并。</li>
-<li>生成新的镜像文件 fsimage.chkpoint。</li>
-<li>拷贝 fsimage.chkpoint 到 namenode。</li>
-<li>namenode将 fsimage.chkpoint 重新命名成fsimage。</li>
-</ol>
-<h3 id="2-FSImage与edits详解"><a href="#2-FSImage与edits详解" class="headerlink" title="2. FSImage与edits详解"></a>2. FSImage与edits详解</h3><p>所有的元数据信息都保存在了FsImage与Eidts文件当中，这两个文件就记录了所有的数据的元数据信息，元数据信息的保存目录配置在了 <strong>hdfs-site.xml</strong> 当中</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--fsimage文件存储的路径--&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">              &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</span><br><span class="line">              &lt;value&gt;file:<span class="comment">///opt/hadoop-2.6.0-cdh5.14.0/hadoopDatas/namenodeDatas&lt;/value&gt;</span></span><br><span class="line">      &lt;/property&gt;</span><br><span class="line">      &lt;!-- edits文件存储的路径 --&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">              &lt;name&gt;dfs.namenode.edits.dir&lt;/name&gt;</span><br><span class="line">              &lt;value&gt;file:<span class="comment">///opt/hadoop-2.6.0-cdh5.14.0/hadoopDatas/dfs/nn/edits&lt;/value&gt;</span></span><br><span class="line">  &lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>客户端对hdfs进行写文件时会首先被记录在edits文件中。</p>
-<p>edits修改时元数据也会更新。</p>
-<p>每次hdfs更新时edits先更新后客户端才会看到最新信息。</p>
-<p>fsimage：是namenode中关于元数据的镜像，一般称为检查点。</p>
-<p>一般开始时对namenode的操作都放在edits中，为什么不放在fsimage中呢？</p>
-<p>因为fsimage是namenode的完整的镜像，内容很大，如果每次都加载到内存的话生成树状拓扑结构，这是非常耗内存和CPU。</p>
-<p>fsimage内容包含了namenode管理下的所有datanode中文件及文件block及block所在的datanode的元数据信息。随着edits内容增大，就需要在一定时间点和fsimage合并。</p>
-<h3 id="3-FSimage文件当中的文件信息查看"><a href="#3-FSimage文件当中的文件信息查看" class="headerlink" title="3. FSimage文件当中的文件信息查看"></a>3. FSimage文件当中的文件信息查看</h3><ul>
-<li>使用命令 hdfs  oiv</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd  /opt/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/hadoopDatas/namenodeDatas/current</span><br><span class="line">hdfs oiv -i fsimage_0000000000000000112 -p XML -o hello.xml</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4-edits当中的文件信息查看"><a href="#4-edits当中的文件信息查看" class="headerlink" title="4. edits当中的文件信息查看"></a>4. edits当中的文件信息查看</h3><ul>
-<li>查看命令 hdfs  oev</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd  &#x2F;opt&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;hadoopDatas&#x2F;dfs&#x2F;nn&#x2F;edits</span><br><span class="line">hdfs oev -i  edits_0000000000000000112-0000000000000000113 -o myedit.xml -p XML</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5-secondarynameNode如何辅助管理FSImage与Edits文件"><a href="#5-secondarynameNode如何辅助管理FSImage与Edits文件" class="headerlink" title="5. secondarynameNode如何辅助管理FSImage与Edits文件"></a>5. secondarynameNode如何辅助管理FSImage与Edits文件</h3><ol>
-<li>secnonaryNN通知NameNode切换editlog。</li>
-<li>secondaryNN从NameNode中获得FSImage和editlog(通过http方式)。</li>
-<li>secondaryNN将FSImage载入内存，然后开始合并editlog，合并之后成为新的fsimage。</li>
-<li>secondaryNN将新的fsimage发回给NameNode。</li>
-<li>NameNode用新的fsimage替换旧的fsimage。</li>
-</ol>
-<p><img src="/assets/blogImg/hadoop/secondarynameNode%E7%9A%84%E8%BE%85%E5%8A%A9%E7%AE%A1%E7%90%86.jpg" alt=""></p>
-<p>完成合并的是 secondarynamenode，会请求namenode停止使用edits，暂时将新写操作放入一个新的文件中（edits.new)。</p>
-<p>secondarynamenode从namenode中<strong>通过http get获得edits</strong>，因为要和fsimage合并，所以也是通过http get 的方式把fsimage加载到内存，然后逐一执行具体对文件系统的操作，与fsimage合并，生成新的fsimage，然后把fsimage发送给namenode，<strong>通过http post的方式</strong>。</p>
-<p>namenode从secondarynamenode获得了fsimage后会把原有的fsimage替换为新的fsimage，把edits.new变成edits。同时会更新fsimage。</p>
-<p>hadoop进入安全模式时需要管理员使用dfsadmin的save namespace来创建新的检查点。</p>
-<p>secondarynamenode在合并edits和fsimage时需要消耗的内存和namenode差不多，所以一般把namenode和secondarynamenode放在不同的机器上。</p>
-<p>fsimage与edits的合并时机取决于两个参数，第一个参数是默认1小时fsimage与edits合并一次。</p>
-<ul>
-<li>第一个参数：时间达到一个小时fsimage与edits就会进行合并</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dfs.namenode.checkpoint.period     3600</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<ul>
-<li>第二个参数：hdfs操作达到1000000次也会进行合并</li>
-</ul>
-<p>﻿</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dfs.namenode.checkpoint.txns       1000000</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>第三个参数：每隔多长时间检查一次hdfs的操作次数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dfs.namenode.checkpoint.check.period   60</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="6-namenode元数据信息多目录配置"><a href="#6-namenode元数据信息多目录配置" class="headerlink" title="6. namenode元数据信息多目录配置"></a>6. namenode元数据信息多目录配置</h3><p>为了保证元数据的安全性，我们一般都是先确定好我们的磁盘挂载目录，将元数据的磁盘做RAID1</p>
-<p>namenode的本地目录可以配置成多个，且每个目录存放内容相同，增加了可靠性。</p>
-<ul>
-<li>具体配置方案:<strong>hdfs-site.xml</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">         &lt;name&gt;dfs.namenode.name.dir&lt;&#x2F;name&gt;</span><br><span class="line">         &lt;value&gt;file:&#x2F;&#x2F;&#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;hadoopDatas&#x2F;namenodeDatas&lt;&#x2F;value&gt;</span><br><span class="line">    &lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="7-namenode故障恢复"><a href="#7-namenode故障恢复" class="headerlink" title="7. namenode故障恢复"></a>7. namenode故障恢复</h3><p>在我们的secondaryNamenode对namenode当中的fsimage和edits进行合并的时候，每次都会先将namenode的fsimage与edits文件拷贝一份过来，所以fsimage与edits文件在secondarNamendoe当中也会保存有一份，如果namenode的fsimage与edits文件损坏，那么我们可以将secondaryNamenode当中的fsimage与edits拷贝过去给namenode继续使用，只不过有可能会丢失一部分数据。这里涉及到几个配置选项</p>
-<ul>
-<li>namenode保存fsimage的配置路径</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--  namenode元数据存储路径，实际工作当中一般使用SSD固态硬盘，并使用多个固态硬盘隔开，冗余元数据 --&gt;</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">  &lt;name&gt;dfs.namenode.name.dir&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;value&gt;file:&#x2F;&#x2F;&#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;hadoopDatas&#x2F;namenodeDatas&lt;&#x2F;value&gt;</span><br><span class="line"> &lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>namenode保存edits文件的配置路径</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;dfs.namenode.edits.dir&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;value&gt;file:&#x2F;&#x2F;&#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;hadoopDatas&#x2F;dfs&#x2F;nn&#x2F;edits&lt;&#x2F;value&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>secondaryNamenode保存fsimage文件的配置路径</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;dfs.namenode.checkpoint.dir&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;value&gt;file:&#x2F;&#x2F;&#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;hadoopDatas&#x2F;dfs&#x2F;snn&#x2F;name&lt;&#x2F;value&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>secondaryNamenode保存edits文件的配置路径</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;dfs.namenode.checkpoint.edits.dir&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;value&gt;file:&#x2F;&#x2F;&#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;hadoopDatas&#x2F;dfs&#x2F;nn&#x2F;snn&#x2F;edits&lt;&#x2F;value&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>接下来我们来模拟namenode的故障恢复功能</strong></p>
-<ol>
-<li>杀死namenode进程: 使用jps查看namenode的进程号 , kill -9 直接杀死。</li>
-<li>删除namenode的fsimage文件和edits文件。（根据上述配置, 找到namenode放置fsimage和edits路径. 直接全部rm -rf 删除。）</li>
-<li>拷贝secondaryNamenode的fsimage与edits文件到namenode的fsimage与edits文件夹下面去。（根据上述配置, 找到secondaryNamenode的fsimage和edits路径, 将内容 使用cp -r 全部复制到namenode对应的目录下即可。）</li>
-<li>重新启动namenode, 观察数据是否存在。</li>
-</ol>
-<h2 id="10-datanode工作机制以及数据存储"><a href="#10-datanode工作机制以及数据存储" class="headerlink" title="10.datanode工作机制以及数据存储"></a>10.datanode工作机制以及数据存储</h2><ul>
-<li><strong>datanode工作机制</strong></li>
-</ul>
-<ol>
-<li>一个数据块在datanode上以文件形式存储在磁盘上，包括两个文件，一个是数据本身，一个是元数据包括数据块的长度，块数据的校验和，以及时间戳。</li>
-<li>DataNode启动后向namenode注册，通过后，周期性（1小时）的向namenode上报所有的块信息。(dfs.blockreport.intervalMsec)。</li>
-<li>心跳是每3秒一次，心跳返回结果带有namenode给该datanode的命令如复制块数据到另一台机器，或删除某个数据块。如果超过10分钟没有收到某个datanode的心跳，则认为该节点不可用。</li>
-<li>集群运行中可以安全加入和退出一些机器。</li>
-</ol>
-<ul>
-<li><strong>数据完整性</strong></li>
-</ul>
-<ol>
-<li>当DataNode读取block的时候，它会计算checksum。</li>
-<li>如果计算后的checksum，与block创建时值不一样，说明block已经损坏。</li>
-<li>client读取其他DataNode上的block。</li>
-<li>datanode在其文件创建后周期验证checksum。</li>
-</ol>
-<ul>
-<li><strong>掉线时限参数设置</strong></li>
-</ul>
-<p>datanode进程死亡或者网络故障造成datanode无法与namenode通信，namenode不会立即把该节点判定为死亡，要经过一段时间，这段时间暂称作超时时长。HDFS默认的超时时长为10分钟+30秒。如果定义超时时间为timeout，则超时时长的计算公式为：</p>
-<p><strong>timeout  = 2 * dfs.namenode.heartbeat.recheck-interval + 10 * dfs.heartbeat.interval。</strong></p>
-<p>而默认的dfs.namenode.heartbeat.recheck-interval 大小为5分钟，dfs.heartbeat.interval默认为3秒。</p>
-<p>需要注意的是hdfs-site.xml <strong>配置文件中的heartbeat.recheck.interval的单位为毫秒</strong>，<strong>dfs.heartbeat.interval的单位为秒</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;dfs.namenode.heartbeat.recheck-interval&lt;&#x2F;name&gt;</span><br><span class="line">    &lt;value&gt;300000&lt;&#x2F;value&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;dfs.heartbeat.interval &lt;&#x2F;name&gt;</span><br><span class="line">    &lt;value&gt;3&lt;&#x2F;value&gt;</span><br><span class="line">&lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><strong>DataNode的目录结构</strong>和namenode不同的是，datanode的存储目录是初始阶段自动创建的，不需要额外格式化。</li>
-</ul>
-<p>在/opt/hadoop-2.6.0-cdh5.14.0/hadoopDatas/datanodeDatas/current这个目录下查看版本号</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cat VERSION </span><br><span class="line"></span><br><span class="line">#Thu Mar 14 07:58:46 CST 2019</span><br><span class="line">storageID&#x3D;DS-47bcc6d5-c9b7-4c88-9cc8-6154b8a2bf39</span><br><span class="line">clusterID&#x3D;CID-dac2e9fa-65d2-4963-a7b5-bb4d0280d3f4</span><br><span class="line">cTime&#x3D;0</span><br><span class="line">datanodeUuid&#x3D;c44514a0-9ed6-4642-b3a8-5af79f03d7a4</span><br><span class="line">storageType&#x3D;DATA_NODE</span><br><span class="line">layoutVersion&#x3D;-56</span><br></pre></td></tr></table></figure>
-
-<p>具体解释:</p>
-<p>storageID：存储id号。</p>
-<p>clusterID集群id，全局唯一。</p>
-<p>cTime属性标记了datanode存储系统的创建时间，对于刚刚格式化的存储系统，这个属性为0；但是在文件系统升级之后，该值会更新到新的时间戳。</p>
-<p>datanodeUuid：datanode的唯一识别码。</p>
-<p>storageType：存储类型。</p>
-<p>layoutVersion是一个负整数。通常只有HDFS增加新特性时才会更新这个版本号。</p>
-<ul>
-<li><strong>datanode多目录配置</strong></li>
-</ul>
-<p>datanode也可以配置成多个目录，每个目录存储的数据不一样。即：数据不是副本。具体配置如下：- 只需要在value中使用逗号分隔出多个存储目录即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;opt&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;etc&#x2F;hadoop</span><br><span class="line">&lt;!--  定义dataNode数据存储的节点位置，实际工作中，一般先确定磁盘的挂载目录，然后多个目录用，进行分割  --&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">                &lt;name&gt;dfs.datanode.data.dir&lt;&#x2F;name&gt;</span><br><span class="line">                &lt;value&gt;file:&#x2F;&#x2F;&#x2F;opt&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;hadoopDatas&#x2F;datanodeDatas&lt;&#x2F;value&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="1-服役新数据节点"><a href="#1-服役新数据节点" class="headerlink" title="1. 服役新数据节点"></a>1. 服役新数据节点</h3><p>需求说明:</p>
-<p>随着公司业务的增长，数据量越来越大，原有的数据节点的容量已经不能满足存储数据的需求，需要在原有集群基础上动态添加新的数据节点。</p>
-<h4 id="1-1-环境准备"><a href="#1-1-环境准备" class="headerlink" title="1.1 环境准备"></a>1.1 环境准备</h4><ol>
-<li>复制一台新的虚拟机出来（将我们纯净的虚拟机复制一台出来，作为我们新的节点）</li>
-<li>修改mac地址以及IP地址</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修改mac地址命令</span><br><span class="line"> vim &#x2F;etc&#x2F;udev&#x2F;rules.d&#x2F;70-persistent-net.rules</span><br><span class="line">修改ip地址命令</span><br><span class="line"> vim &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth0</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>关闭防火墙，关闭selinux</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关闭防火墙</span><br><span class="line"> service iptables stop</span><br><span class="line">关闭selinux</span><br><span class="line"> vim &#x2F;etc&#x2F;selinux&#x2F;config</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>更改主机名</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">更改主机名命令，将node04主机名更改为node04.hadoop.com</span><br><span class="line">vim &#x2F;etc&#x2F;sysconfig&#x2F;network</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>四台机器更改主机名与IP地址映射</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">四台机器都要添加hosts文件</span><br><span class="line">vim &#x2F;etc&#x2F;hosts</span><br><span class="line"></span><br><span class="line">192.168.52.100 node01.hadoop.com  node01</span><br><span class="line">192.168.52.110 node02.hadoop.com  node02</span><br><span class="line">192.168.52.120 node03.hadoop.com  node03</span><br><span class="line">192.168.52.130 node04.hadoop.com  node04</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>node04服务器关机重启</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node04执行以下命令关机重启</span><br><span class="line">reboot -h now</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>node04安装jdk</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node04统一两个路径</span><br><span class="line"> mkdir -p &#x2F;export&#x2F;softwares&#x2F;</span><br><span class="line"> mkdir -p &#x2F;export&#x2F;servers&#x2F;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>然后解压jdk安装包，配置环境变量</strong></p>
-<ol start="8">
-<li>解压hadoop安装包</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在node04服务器上面解压hadoop安装包到&#x2F;export&#x2F;servers , node01执行以下命令将hadoop安装包拷贝到node04服务器</span><br><span class="line"> cd &#x2F;export&#x2F;softwares&#x2F;</span><br><span class="line"> scp hadoop-2.6.0-cdh5.14.0-自己编译后的版本.tar.gz node04:$PWD</span><br><span class="line"></span><br><span class="line">node04解压安装包</span><br><span class="line"> tar -zxf hadoop-2.6.0-cdh5.14.0-自己编译后的版本.tar.gz -C &#x2F;export&#x2F;servers&#x2F;</span><br></pre></td></tr></table></figure>
-
-<ol start="9">
-<li>将node01关于hadoop的配置文件全部拷贝到node04</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node01执行以下命令，将hadoop的配置文件全部拷贝到node04服务器上面</span><br><span class="line"> cd &#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;etc&#x2F;hadoop&#x2F;</span><br><span class="line"> scp .&#x2F;* node04:$PWD</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="1-2-服役新节点具体步骤"><a href="#1-2-服役新节点具体步骤" class="headerlink" title="1.2 服役新节点具体步骤"></a>1.2 服役新节点具体步骤</h4><ol>
-<li>创建dfs.hosts文件</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">在node01也就是namenode所在的机器的/export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/etc/hadoop目录下创建dfs.hosts文件</span><br><span class="line"></span><br><span class="line">[root@node01 hadoop]# cd /export/servers/hadoop-2.6.0-cdh5.14.0/etc/hadoop</span><br><span class="line">[root@node01 hadoop]# touch dfs.hosts</span><br><span class="line">[root@node01 hadoop]# vim dfs.hosts</span><br><span class="line"></span><br><span class="line">添加如下主机名称（包含新服役的节点）</span><br><span class="line">node01</span><br><span class="line">node02</span><br><span class="line">node03</span><br><span class="line">node04</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>node01编辑hdfs-site.xml添加以下配置</li>
-</ol>
-<blockquote>
-<p>在namenode的hdfs-site.xml配置文件中增加dfs.hosts属性</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">node01执行以下命令 :</span><br><span class="line"></span><br><span class="line">cd &#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;etc&#x2F;hadoop</span><br><span class="line">vim hdfs-site.xml</span><br><span class="line"></span><br><span class="line"># 添加一下内容</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">         &lt;name&gt;dfs.hosts&lt;&#x2F;name&gt;</span><br><span class="line">         &lt;value&gt;&#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;etc&#x2F;hadoop&#x2F;dfs.hosts&lt;&#x2F;value&gt;</span><br><span class="line">    &lt;&#x2F;property&gt;</span><br><span class="line">    &lt;!--动态上下线配置: 如果配置文件中有, 就不需要配置--&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">  &lt;name&gt;dfs.hosts&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;value&gt;&#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;etc&#x2F;hadoop&#x2F;accept_host&lt;&#x2F;value&gt;</span><br><span class="line"> &lt;&#x2F;property&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;property&gt;</span><br><span class="line">  &lt;name&gt;dfs.hosts.exclude&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;value&gt;&#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;etc&#x2F;hadoop&#x2F;deny_host&lt;&#x2F;value&gt;</span><br><span class="line"> &lt;&#x2F;property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="3">
-<li>刷新namenode</li>
-</ol>
-<ul>
-<li>node01执行以下命令刷新namenode</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@node01 hadoop]# hdfs dfsadmin -refreshNodes</span><br><span class="line">Refresh nodes successful</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>更新resourceManager节点</li>
-</ol>
-<ul>
-<li>node01执行以下命令刷新resourceManager</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@node01 hadoop]# yarn rmadmin -refreshNodes</span><br><span class="line"><span class="number">22</span>/<span class="number">03</span>/<span class="number">04</span> <span class="number">11</span>:<span class="number">19</span>:<span class="number">47</span> INFO client.RMProxy: Connecting to ResourceManager at node01/<span class="number">192.168</span><span class="number">.52</span><span class="number">.100</span>:<span class="number">8033</span></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>namenode的slaves文件增加新服务节点主机名称</li>
-</ol>
-<blockquote>
-<p>node01编辑slaves文件，并添加新增节点的主机，更改完后，slaves文件不需要分发到其他机器上面去</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">node01执行以下命令编辑slaves文件 :</span><br><span class="line"> cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/etc/hadoop</span><br><span class="line"> vim slaves</span><br><span class="line"> </span><br><span class="line">添加一下内容:  </span><br><span class="line">node01</span><br><span class="line">node02</span><br><span class="line">node03</span><br><span class="line">node04</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>单独启动新增节点</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node04服务器执行以下命令，启动datanode和nodemanager : </span><br><span class="line"> cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/</span><br><span class="line"> sbin/hadoop-daemon.sh start datanode</span><br><span class="line"> sbin/yarn-daemon.sh start nodemanager</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>使用负载均衡命令，让数据均匀负载所有机器</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node01执行以下命令 : </span><br><span class="line"> cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/</span><br><span class="line"> sbin/start-balancer.sh</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-退役旧数据"><a href="#2-退役旧数据" class="headerlink" title="2 退役旧数据"></a>2 退役旧数据</h3><ol>
-<li>创建dfs.hosts.exclude配置文件</li>
-</ol>
-<p>在namenod所在服务器的/export/servers/hadoop-2.6.0-cdh5.14.0/etc/hadoop目录下创建dfs.hosts.exclude文件，并添加需要退役的主机名称</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">node01执行以下命令 : </span><br><span class="line"> cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/etc/hadoop</span><br><span class="line"> touch dfs.hosts.exclude</span><br><span class="line"> vim dfs.hosts.exclude</span><br><span class="line">添加以下内容:</span><br><span class="line"> node04.hadoop.com</span><br><span class="line"></span><br><span class="line">特别注意：该文件当中一定要写真正的主机名或者ip地址都行，不能写node04</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>编辑namenode所在机器的hdfs-site.xml</li>
-</ol>
-<blockquote>
-<p>编辑namenode所在的机器的hdfs-site.xml配置文件，添加以下配置</p>
-</blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/etc/hadoop</span><br><span class="line">vim hdfs-site.xml</span><br><span class="line"></span><br><span class="line">#添加一下内容:</span><br><span class="line"> &lt;property&gt;</span><br><span class="line">         &lt;name&gt;dfs.hosts.exclude&lt;/name&gt;</span><br><span class="line">         &lt;value&gt;/export/servers/hadoop-2.6.0-cdh5.14.0/etc/hadoop/dfs.hosts.exclude&lt;/value&gt;</span><br><span class="line">   &lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>刷新namenode，刷新resourceManager</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在namenode所在的机器执行以下命令，刷新namenode，刷新resourceManager : </span><br><span class="line"></span><br><span class="line">hdfs dfsadmin -refreshNodes</span><br><span class="line">yarn rmadmin -refreshNodes</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>节点退役完成，停止该节点进程</li>
-</ol>
-<p>等待退役节点状态为decommissioned（所有块已经复制完成），停止该节点及节点资源管理器。注意：如果副本数是3，服役的节点小于等于3，是不能退役成功的，需要修改副本数后才能退役。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node04执行以下命令，停止该节点进程 : </span><br><span class="line"> cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span></span><br><span class="line"> sbin/hadoop-daemon.sh stop datanode</span><br><span class="line"> sbin/yarn-daemon.sh stop nodemanager</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>从include文件中删除退役节点</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">namenode所在节点也就是node01执行以下命令删除退役节点 :</span><br><span class="line"> cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/etc/hadoop</span><br><span class="line"> vim dfs.hosts</span><br><span class="line"> </span><br><span class="line">删除后的内容: 删除了node04</span><br><span class="line">node01</span><br><span class="line">node02</span><br><span class="line">node03</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>node01执行一下命令刷新namenode，刷新resourceManager</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -refreshNodes</span><br><span class="line">yarn rmadmin -refreshNodes</span><br></pre></td></tr></table></figure>
-
-<ol start="7">
-<li>从namenode的slave文件中删除退役节点</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">namenode所在机器也就是node01执行以下命令从slaves文件中删除退役节点 : </span><br><span class="line"> cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/etc/hadoop</span><br><span class="line"> vim slaves</span><br><span class="line">删除后的内容: 删除了 node04 </span><br><span class="line">node01</span><br><span class="line">node02</span><br><span class="line">node03</span><br></pre></td></tr></table></figure>
-
-<ol start="8">
-<li>如果数据负载不均衡，执行以下命令进行均衡负载</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node01执行以下命令进行均衡负载</span><br><span class="line"> cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/</span><br><span class="line"> sbin/start-balancer.sh</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="11-block块手动拼接成为完整数据"><a href="#11-block块手动拼接成为完整数据" class="headerlink" title="11. block块手动拼接成为完整数据"></a>11. block块手动拼接成为完整数据</h2><p>所有的数据都是以一个个的block块存储的，只要我们能够将文件的所有block块全部找出来，拼接到一起，又会成为一个完整的文件，接下来我们就来通过命令将文件进行拼接:</p>
-<ol>
-<li>上传一个大于128M的文件到hdfs上面去</li>
-</ol>
-<p>我们选择一个大于128M的文件上传到hdfs上面去，只有一个大于128M的文件才会有多个block块。</p>
-<p>这里我们选择将我们的jdk安装包上传到hdfs上面去。</p>
-<p>node01执行以下命令上传jdk安装包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;export&#x2F;softwares&#x2F;</span><br><span class="line">hdfs dfs -put jdk-8u141-linux-x64.tar.gz  &#x2F;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>web浏览器界面查看jdk的两个block块id</li>
-</ol>
-<p>这里我们看到两个block块id分别为1073742699和1073742700</p>
-<p>那么我们就可以通过blockid将我们两个block块进行手动拼接了。</p>
-<ol start="3">
-<li>根据我们的配置文件找到block块所在的路径</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">根据我们hdfs-site.xml的配置，找到datanode所在的路径</span><br><span class="line">&lt;!--  定义dataNode数据存储的节点位置，实际工作中，一般先确定磁盘的挂载目录，然后多个目录用，进行分割  --&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">                &lt;name&gt;dfs.datanode.data.dir&lt;&#x2F;name&gt;</span><br><span class="line">                &lt;value&gt;file:&#x2F;&#x2F;&#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;hadoopDatas&#x2F;datanodeDatas&lt;&#x2F;value&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">进入到以下路径 : 此基础路径为 上述配置中value的路径</span><br><span class="line">cd &#x2F;export&#x2F;servers&#x2F;hadoop-2.6.0-cdh5.14.0&#x2F;hadoopDatas&#x2F;datanodeDatas&#x2F;current&#x2F;BP-557466926-192.168.52.100-1549868683602&#x2F;current&#x2F;finalized&#x2F;subdir0&#x2F;subdir3</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="4">
-<li>执行block块的拼接</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">将不同的各个block块按照顺序进行拼接起来，成为一个完整的文件</span><br><span class="line">cat blk_1073742699 &gt;&gt; jdk8u141.tar.gz</span><br><span class="line">cat blk_1073742700 &gt;&gt; jdk8u141.tar.gz</span><br><span class="line">移动我们的jdk到&#x2F;export路径，然后进行解压</span><br><span class="line">mv  jdk8u141.tar.gz &#x2F;export&#x2F;</span><br><span class="line">cd &#x2F;export&#x2F;</span><br><span class="line">tar -zxf jdk8u141.tar.gz</span><br><span class="line">正常解压，没有问题，说明我们的程序按照block块存储没有问题</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="12-HDFS其他重要功能"><a href="#12-HDFS其他重要功能" class="headerlink" title="12. HDFS其他重要功能"></a>12. HDFS其他重要功能</h2><h3 id="1-多个集群之间的数据拷贝"><a href="#1-多个集群之间的数据拷贝" class="headerlink" title="1. 多个集群之间的数据拷贝"></a>1. 多个集群之间的数据拷贝</h3><p>在我们实际工作当中，极有可能会遇到将测试集群的数据拷贝到生产环境集群，或者将生产环境集群的数据拷贝到测试集群，那么就需要我们在多个集群之间进行数据的远程拷贝，hadoop自带也有命令可以帮我们实现这个功能</p>
-<p>本地文件拷贝scp</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/softwares/</span><br><span class="line"></span><br><span class="line">scp -r jdk-<span class="number">8</span>u141-linux-x64.tar.gz root<span class="meta">@node</span>02:/export/</span><br></pre></td></tr></table></figure>
-
-
-
-<p>集群之间的数据拷贝distcp</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span>/</span><br><span class="line"></span><br><span class="line">bin/hadoop distcp hdfs:<span class="comment">//node01:8020/jdk-8u141-linux-x64.tar.gz  hdfs://cluster2:8020/</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2-hadoop归档文件archive"><a href="#2-hadoop归档文件archive" class="headerlink" title="2. hadoop归档文件archive"></a>2. hadoop归档文件archive</h3><p>每个文件均按块存储，每个块的元数据存储在namenode的内存中，因此hadoop存储小文件会非常低效。因为大量的小文件会耗尽namenode中的大部分内存。但注意，存储小文件所需要的磁盘容量和存储这些文件原始内容所需要的磁盘空间相比也不会增多。例如，一个1MB的文件以大小为128MB的块存储，使用的是1MB的磁盘空间，而不是128MB。</p>
-<p>Hadoop存档文件或HAR文件，是一个更高效的文件存档工具，它将文件存入HDFS块，在减少namenode内存使用的同时，允许对文件进行透明的访问。具体说来，Hadoop存档文件可以用作MapReduce的输入。</p>
-<p>创建归档文件</p>
-<ul>
-<li>第一步：创建归档文件注意：归档文件一定要保证yarn集群启动</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /export/servers/hadoop-<span class="number">2.6</span><span class="number">.0</span>-cdh5<span class="number">.14</span><span class="number">.0</span></span><br><span class="line"></span><br><span class="line">bin/hadoop archive -archiveName myhar.har -p /user/root /user</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>第二步：查看归档文件内容</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -lsr &#x2F;user&#x2F;myhar.har</span><br><span class="line"></span><br><span class="line">hdfs dfs -lsr har:&#x2F;&#x2F;&#x2F;user&#x2F;myhar.har</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>第三步：解压归档文件</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -mkdir -p /user/har</span><br><span class="line">hdfs dfs -cp har:<span class="comment">///user/myhar.har/* /user/har/</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="3-hdfs快照snapShot管理"><a href="#3-hdfs快照snapShot管理" class="headerlink" title="3. hdfs快照snapShot管理"></a>3. hdfs快照snapShot管理</h3><p>快照顾名思义，就是相当于对我们的hdfs文件系统做一个备份，我们可以通过快照对我们指定的文件夹设置备份，但是添加快照之后，并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。</p>
-<ol>
-<li>快照使用基本语法</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、 开启指定目录的快照功能</span><br><span class="line"> hdfs dfsadmin  -allowSnapshot  路径 </span><br><span class="line"><span class="number">2</span>、禁用指定目录的快照功能（默认就是禁用状态）</span><br><span class="line"> hdfs dfsadmin  -disallowSnapshot  路径</span><br><span class="line"><span class="number">3</span>、给某个路径创建快照snapshot</span><br><span class="line"> hdfs dfs -createSnapshot  路径</span><br><span class="line"><span class="number">4</span>、指定快照名称进行创建快照snapshot</span><br><span class="line"> hdfs dfs  -createSanpshot 路径 名称    </span><br><span class="line"><span class="number">5</span>、给快照重新命名</span><br><span class="line"> hdfs dfs  -renameSnapshot  路径 旧名称  新名称</span><br><span class="line"><span class="number">6</span>、列出当前用户所有可快照目录</span><br><span class="line"> hdfs lsSnapshottableDir  </span><br><span class="line"><span class="number">7</span>、比较两个快照的目录不同之处</span><br><span class="line"> hdfs snapshotDiff  路径<span class="number">1</span>  路径<span class="number">2</span></span><br><span class="line"><span class="number">8</span>、删除快照snapshot</span><br><span class="line"> hdfs dfs -deleteSnapshot &lt;path&gt; &lt;snapshotName&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>快照操作实际案例</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、开启与禁用指定目录的快照</span><br><span class="line"></span><br><span class="line">    [root@node01 hadoop-2.6.0-cdh5.14.0]# hdfs dfsadmin -allowSnapshot /user</span><br><span class="line"></span><br><span class="line">    Allowing snaphot on /user succeeded</span><br><span class="line"></span><br><span class="line">    [root@node01 hadoop-2.6.0-cdh5.14.0]# hdfs dfsadmin -disallowSnapshot /user</span><br><span class="line"></span><br><span class="line">    Disallowing snaphot on /user succeeded</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、对指定目录创建快照</span><br><span class="line"></span><br><span class="line"> 注意：创建快照之前，先要允许该目录创建快照</span><br><span class="line"></span><br><span class="line">    [root@node01 hadoop-2.6.0-cdh5.14.0]# hdfs dfsadmin -allowSnapshot /user</span><br><span class="line"></span><br><span class="line">    Allowing snaphot on /user succeeded</span><br><span class="line"></span><br><span class="line">    [root@node01 hadoop-2.6.0-cdh5.14.0]# hdfs dfs -createSnapshot /user    </span><br><span class="line"></span><br><span class="line">    Created snapshot /user/.snapshot/s20190317-<span class="number">210906.549</span></span><br><span class="line"></span><br><span class="line"> 通过web浏览器访问快照</span><br><span class="line"></span><br><span class="line"> http:<span class="comment">//node01:50070/explorer.html#/user/.snapshot/s20190317-210906.549</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、指定名称创建快照</span><br><span class="line"></span><br><span class="line">    [root@node01 hadoop-2.6.0-cdh5.14.0]# hdfs dfs -createSnapshot /user mysnap1</span><br><span class="line"></span><br><span class="line">    Created snapshot /user/.snapshot/mysnap1</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>、重命名快照</span><br><span class="line"></span><br><span class="line"> hdfs dfs -renameSnapshot /user mysnap1 mysnap2</span><br><span class="line"> </span><br><span class="line"><span class="number">5</span>、列出当前用户所有可以快照的目录</span><br><span class="line"></span><br><span class="line"> hdfs lsSnapshottableDir</span><br><span class="line"></span><br><span class="line"><span class="number">6</span>、比较两个快照不同之处</span><br><span class="line"></span><br><span class="line">    hdfs dfs -createSnapshot /user snap1</span><br><span class="line"></span><br><span class="line">    hdfs dfs -createSnapshot /user snap2</span><br><span class="line"></span><br><span class="line">    hdfs snapshotDiff  snap1 snap2</span><br><span class="line"></span><br><span class="line"><span class="number">7</span>、删除快照</span><br><span class="line"></span><br><span class="line"> hdfs dfs -deleteSnapshot /user snap1</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-hdfs回收站"><a href="#4-hdfs回收站" class="headerlink" title="4. hdfs回收站"></a>4. hdfs回收站</h3><p>任何一个文件系统，基本上都会有垃圾桶机制，也就是删除的文件，不会直接彻底清掉，我们一把都是将文件放置到垃圾桶当中去，过一段时间之后，自动清空垃圾桶当中的文件，这样对于文件的安全删除比较有保证，避免我们一些误操作，导致误删除文件或者数据。</p>
-<ol>
-<li>回收站配置两个参数</li>
-</ol>
-<p>默认值fs.trash.interval=0，0表示禁用回收站，可以设置删除文件的存活时间。</p>
-<p>默认值fs.trash.checkpoint.interval=0，检查回收站的间隔时间。</p>
-<p>要求fs.trash.checkpoint.interval&lt;=fs.trash.interval。</p>
-<ol start="2">
-<li>启用回收站</li>
-</ol>
-<p>修改所有服务器的core-site.xml配置文件</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--  开启hdfs的垃圾桶机制，删除掉的数据可以从垃圾桶中回收，单位分钟 --&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">                &lt;name&gt;fs.trash.interval&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;10080&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="3">
-<li>查看回收站</li>
-</ol>
-<p>回收站在集群的 /user/root/.Trash/  这个路径下</p>
-<ol start="4">
-<li>通过javaAPI删除的数据，不会进入回收站，需要调用moveToTrash()才会进入回收站</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用回收站的方式: 删除数据</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">deleteFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        <span class="comment">//1. 获取FileSystem对象</span></span><br><span class="line">        Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">        FileSystem fileSystem = FileSystem.get(<span class="keyword">new</span> URI(<span class="string">"hdfs://node01:8020"</span>), configuration, <span class="string">"root"</span>);</span><br><span class="line">        <span class="comment">//2. 执行删除操作</span></span><br><span class="line">        <span class="comment">// fileSystem.delete();  这种操作会直接将数据删除, 不会进入垃圾桶</span></span><br><span class="line">        Trash trash = <span class="keyword">new</span> Trash(fileSystem,configuration);</span><br><span class="line">        <span class="keyword">boolean</span> flag = trash.isEnabled(); <span class="comment">// 是否已经开启了垃圾桶机制</span></span><br><span class="line">        System.out.println(flag);</span><br><span class="line"></span><br><span class="line">        trash.moveToTrash(<span class="keyword">new</span> Path(<span class="string">"/quota"</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 释放资源</span></span><br><span class="line">        fileSystem.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="5">
-<li>恢复回收站数据</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hdfs  dfs  -mv  trashFileDir   hdfsdir</span><br><span class="line">trashFileDir  ：回收站的文件路径</span><br><span class="line">hdfsdir   ：将文件移动到hdfs的哪个路径下</span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="6">
-<li>清空回收站</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -expunge</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JVM</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2022/03/04/hadoop/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2022/03/05/hadoop%E4%B9%8BMapReduce/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          hadoop之MapReduce
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/09/22/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D-KMP%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数据结构-字符串匹配-KMP算法</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -908,9 +210,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
