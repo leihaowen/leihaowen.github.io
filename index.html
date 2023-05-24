@@ -136,6 +136,247 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-go内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/24/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">go内存管理</a>
+    </h1>
+  
+
+        
+        <a href="/2023/05/24/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="archive-article-date">
+  	<time datetime="2023-05-24T06:06:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="go-内存管理"><a href="#go-内存管理" class="headerlink" title="go 内存管理"></a>go 内存管理</h1><p>内存管理工作</p>
+<p>分配与回收</p>
+<p>自动内存管理</p>
+<p>引用计数</p>
+<p>gc自动管理</p>
+<h3 id="go对内存的组织"><a href="#go对内存的组织" class="headerlink" title="go对内存的组织"></a>go对内存的组织</h3><p>编译期决定</p>
+<p>栈</p>
+<p>堆</p>
+<p>其他</p>
+<ul>
+<li>go runtime</li>
+<li>跨语言调用</li>
+</ul>
+<p>创建对象语法糖被编译为</p>
+<p>栈上分配指令</p>
+<p>堆上分配方法调用</p>
+<p>每个goroutine都有独立栈空间</p>
+<p>效率远大于堆上分配</p>
+<p>逃逸分析</p>
+<ul>
+<li>编译器AST层一种优化手段</li>
+<li>数据流分析</li>
+</ul>
+<p>方法内优化</p>
+<h2 id="go的堆内存"><a href="#go的堆内存" class="headerlink" title="go的堆内存"></a>go的堆内存</h2><p>基于TCmalloc设计机制</p>
+<p><img src="/assets/blogImg/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/0.png" alt=""></p>
+<p>每个large独占一个mspan</p>
+<p>大小相同的small会放在一个msapn</p>
+<p>编译器会把堆内存分配动作都定向到runtime.mallocgc()</p>
+<p>对于分配的对象请求进行区分</p>
+<ul>
+<li>scan</li>
+<li>no-scan（不包含引用和指针）</li>
+</ul>
+<p>mcache实现高速线程局部分配</p>
+<p><img src="/assets/blogImg/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/1.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/05/24/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-go性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/24/go%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">go性能优化</a>
+    </h1>
+  
+
+        
+        <a href="/2023/05/24/go%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="archive-article-date">
+  	<time datetime="2023-05-24T05:45:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="go-性能优化"><a href="#go-性能优化" class="headerlink" title="go 性能优化"></a>go 性能优化</h1><h2 id="使用string-Builder-而不是-bytes-Buffer"><a href="#使用string-Builder-而不是-bytes-Buffer" class="headerlink" title="使用string.Builder 而不是 bytes.Buffer"></a>使用string.Builder 而不是 bytes.Buffer</h2><p>byte.buffer 在转换的时候重新分配了一次内存</p>
+<p>而string.builder 是使用了unsafe的指针，所以性能更高</p>
+<p>string和slice byte强转</p>
+<p>string从设计上是immutable的，所以如果要从  slice byte 强转，必须保证底层不会被修改也不会被回收（sync.pool），因为本质上是使用了同一段内存来避免内存拷贝</p>
+<p>同样的string由于设计上是immutable的，所以如果是强制转到slice byte，不可以对slice byte进行写操作，否则行为未定义</p>
+<h2 id="函数中返回值而不是指针"><a href="#函数中返回值而不是指针" class="headerlink" title="函数中返回值而不是指针"></a>函数中返回值而不是指针</h2><p>使用指针会使逃逸分析将变量分配在堆上</p>
+<p>分配在栈上的对象会随着栈的销毁而回收，不会给gc带来压力</p>
+<p>在栈上进行小对象拷贝的性能很好，比分配对象在堆上要好很多</p>
+<p><strong>指针对应可修改权</strong></p>
+<p>如非必要slice不要包含指针</p>
+<h2 id="使用atomic优化？"><a href="#使用atomic优化？" class="headerlink" title="使用atomic优化？"></a>使用atomic优化？</h2><p>锁是操作系统实现的，而atomic是硬件实现的所以效率高</p>
+<p>锁保护一段逻辑，而不仅仅是一个变量</p>
+<h2 id="使用sync-pool优化内存？"><a href="#使用sync-pool优化内存？" class="headerlink" title="使用sync.pool优化内存？"></a>使用sync.pool优化内存？</h2><p><img src="/assets/blogImg/go%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/0.png" alt=""></p>
+<p><img src="/assets/blogImg/go%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/1.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/05/24/go%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-go语言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/05/24/go%E8%AF%AD%E8%A8%80/">go语言基础特性</a>
+    </h1>
+  
+
+        
+        <a href="/2023/05/24/go%E8%AF%AD%E8%A8%80/" class="archive-article-date">
+  	<time datetime="2023-05-24T03:50:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="go-map"><a href="#go-map" class="headerlink" title="go map"></a>go map</h1><p>go的map是在runtime里面写死的，无法调优或修改</p>
+<p>go的map用的是拉链法，有很多buckets，在buckets里面存很多key和value的地址，随着扩容会创建新的buckets并且迁移原来的内容</p>
+<p>map的key和value都不可以取地址，会随着map扩容地址会改变</p>
+        
+          <a class="article-more-a" href="/2023/05/24/go%E8%AF%AD%E8%A8%80/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/05/24/go%E8%AF%AD%E8%A8%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-深入理解NLP的中文分词：从理论到实践笔记：class 1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -692,235 +933,6 @@
 
 
   
-    <article id="post-RabbitMQ的高级特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/27/RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">RabbitMQ的高级特性</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/27/RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" class="archive-article-date">
-  	<time datetime="2022-03-27T10:10:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="RabbitMQ的高级特性"><a href="#RabbitMQ的高级特性" class="headerlink" title="RabbitMQ的高级特性"></a>RabbitMQ的高级特性</h1><h2 id="1-消息可靠投递"><a href="#1-消息可靠投递" class="headerlink" title="1. 消息可靠投递"></a>1. 消息可靠投递</h2><p>在使用RabbitMQ时，作为消息发送方，希望杜绝消息丢失或投递失败的情况。RabbitMQ为我们提供了两种方式用来控制消息的投递可靠性模式。</p>
-<ul>
-<li>confirm 确认模式</li>
-<li>return 退回模式</li>
-</ul>
-<p>消息传递的路径：</p>
-<p>producer –&gt; rabbitmq broker –&gt; exchange –&gt; queue –&gt; consumer</p>
-<ul>
-<li>消息从producer到exchange则会返回一个confirmCallback。</li>
-<li>消息从exchange–&gt;queue投递<strong>失败</strong>则会返回一个returnCallback。</li>
-</ul>
-        
-          <a class="article-more-a" href="/2022/03/27/RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RabbitMQ</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/27/RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-RabbitMQ" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/25/RabbitMQ/">RabbitMQ</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/25/RabbitMQ/" class="archive-article-date">
-  	<time datetime="2022-03-25T12:17:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h2 id="1-什么是RabbitMQ"><a href="#1-什么是RabbitMQ" class="headerlink" title="1. 什么是RabbitMQ"></a>1. 什么是RabbitMQ</h2><p><strong>RabbitMQ</strong>是实现了高级消息队列协议（<strong>AMQP</strong>）的开源消息代理软件（亦称面向消息的中间件）。</p>
-<h3 id="RabbitMQ的优势"><a href="#RabbitMQ的优势" class="headerlink" title="RabbitMQ的优势"></a>RabbitMQ的优势</h3><ul>
-<li>应用解耦，让生产者和消费者与MQ通信，降低系统耦合度</li>
-<li>异步提速，生产者将消息提交队列，跳过消费者过程响应用户，提高系统响应速度</li>
-<li>削峰填谷，在面临短时间大量流量时，可以把消息打在MQ上，保护后台系统不被超高响应冲垮</li>
-</ul>
-        
-          <a class="article-more-a" href="/2022/03/25/RabbitMQ/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">RabbitMQ</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/25/RabbitMQ/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-zookeeper" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/25/zookeeper/">zookeeper</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/25/zookeeper/" class="archive-article-date">
-  	<time datetime="2022-03-25T12:16:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/25/zookeeper/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -935,7 +947,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 雷浩文
+    		&copy; 2023 雷浩文
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1014,7 +1026,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">GFS</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1022,11 +1034,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+                <a href="javascript:void(0)" class="js-tag color4">GFS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1038,6 +1046,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
              
@@ -1046,27 +1058,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Synchronized</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">redisR</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">乐观锁悲观锁</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1074,15 +1070,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">乐观锁悲观锁</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">redisR</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">volatile</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
+                <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1098,23 +1110,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法笔记-哈希</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">三角形面积公式</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1122,11 +1122,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">软件架构设计</a>
+                <a href="javascript:void(0)" class="js-tag color5">排序算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">三角形面积公式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">软件架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">软件架构设计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">线程池</a>
               </li>
              
               <li class="article-tag-list-item">
