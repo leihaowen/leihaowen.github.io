@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>go内存管理 | 雷浩文的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="go 内存管理内存管理工作 分配与回收 自动内存管理 引用计数 gc自动管理 go对内存的组织编译期决定 栈 堆 其他  go runtime 跨语言调用  创建对象语法糖被编译为 栈上分配指令 堆上分配方法调用 每个goroutine都有独立栈空间 效率远大于堆上分配 逃逸分析  编译器AST层一种优化手段 数据流分析  方法内优化 go的堆内存基于TCmalloc设计机制  每个large独占">
+  <meta name="description" content="go 内存管理内存管理工作 分配与回收 自动内存管理 引用计数 gc自动管理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="go内存管理">
 <meta property="og:url" content="http://yoursite.com/2023/05/24/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="雷浩文的博客">
-<meta property="og:description" content="go 内存管理内存管理工作 分配与回收 自动内存管理 引用计数 gc自动管理 go对内存的组织编译期决定 栈 堆 其他  go runtime 跨语言调用  创建对象语法糖被编译为 栈上分配指令 堆上分配方法调用 每个goroutine都有独立栈空间 效率远大于堆上分配 逃逸分析  编译器AST层一种优化手段 数据流分析  方法内优化 go的堆内存基于TCmalloc设计机制  每个large独占">
+<meta property="og:description" content="go 内存管理内存管理工作 分配与回收 自动内存管理 引用计数 gc自动管理">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/0.png">
 <meta property="og:image" content="http://yoursite.com/assets/blogImg/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/1.png">
 <meta property="article:published_time" content="2023-05-24T06:06:58.000Z">
-<meta property="article:modified_time" content="2023-05-24T06:25:37.458Z">
+<meta property="article:modified_time" content="2023-05-24T06:31:10.724Z">
 <meta property="article:author" content="雷浩文">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/assets/blogImg/go%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/0.png">
@@ -166,6 +166,8 @@
 <p>自动内存管理</p>
 <p>引用计数</p>
 <p>gc自动管理</p>
+<a id="more"></a>
+
 <h3 id="go对内存的组织"><a href="#go对内存的组织" class="headerlink" title="go对内存的组织"></a>go对内存的组织</h3><p>编译期决定</p>
 <p>栈</p>
 <p>堆</p>
@@ -393,10 +395,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">todo</a>
               </li>
              
@@ -405,11 +403,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java并发编程</a>
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -417,7 +411,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java并发编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -425,11 +423,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Synchronized</a>
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Synchronized</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -441,11 +443,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">乐观锁悲观锁</a>
+                <a href="javascript:void(0)" class="js-tag color2">redisR</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">redisR</a>
+                <a href="javascript:void(0)" class="js-tag color2">乐观锁悲观锁</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,19 +475,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法笔记-哈希</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,15 +487,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">三角形面积公式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">软件架构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">软件架构设计</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法笔记-哈希</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,7 +495,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">软件架构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">三角形面积公式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">软件架构设计</a>
               </li>
             
             <div class="clearfix"></div>
